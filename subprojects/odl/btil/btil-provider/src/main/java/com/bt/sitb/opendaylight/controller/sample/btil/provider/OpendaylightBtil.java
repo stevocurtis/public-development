@@ -50,7 +50,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 
 public class OpendaylightBtil implements SitbBtilService, SitbBtilProviderRuntimeMXBean,
-                                            DataChangeListener, AutoCloseable {
+        DataChangeListener, AutoCloseable {
 
     private static final Logger LOG = LoggerFactory.getLogger(OpendaylightBtil.class);
 
@@ -123,9 +123,9 @@ public class OpendaylightBtil implements SitbBtilService, SitbBtilProviderRuntim
         // fixed (embedded) into the hardware.
         // This is why the manufacture and model number are hardcoded.
         return new SitbBtilBuilder().setBtilManufacturer( TOASTER_MANUFACTURER )
-                                   .setBtilModelNumber( TOASTER_MODEL_NUMBER )
-                                   .setBtilStatus( status )
-                                   .build();
+                .setBtilModelNumber( TOASTER_MODEL_NUMBER )
+                .setBtilStatus( status )
+                .build();
     }
 
     private SitbDevice buildDevice(String manufacturer) {
@@ -221,14 +221,9 @@ public class OpendaylightBtil implements SitbBtilService, SitbBtilProviderRuntim
 
         // Add data store
         writer.println("dataStore") ;
+        writer.println ("need to find out how to get all keys from data store") ; //TODO
 
-        LOG.info("{}", stringWriter);
-
-        DumpDatastoreOutput output = new DumpDatastoreOutputBuilder().setResponse(stringWriter.toString()).build() ;
-        ReadOnlyTransaction tx = dataProvider.newReadOnlyTransaction();
-        tx.put( LogicalDatastoreType.OPERATIONAL,
-                ciscoSwitchId,
-                buildDevice( "Cisco Switch" ) );
+        DumpDatastoreOutput output = new DumpDatastoreOutputBuilder().setResponse(stringWriter.toString()).build();
         return Futures.immediateFuture(RpcResultBuilder.<DumpDatastoreOutput>success(output).build());    }
 
     private Switch createSwitch(Long nodeId)
@@ -436,50 +431,50 @@ public class OpendaylightBtil implements SitbBtilService, SitbBtilProviderRuntim
 
         final ReadWriteTransaction tx = dataProvider.newReadWriteTransaction();
         ListenableFuture<Optional<SitbBtil>> readFuture =
-                                          tx.read( LogicalDatastoreType.OPERATIONAL, TOASTER_IID );
+                tx.read( LogicalDatastoreType.OPERATIONAL, TOASTER_IID );
 
         final ListenableFuture<Void> commitFuture =
-            Futures.transform( readFuture, new AsyncFunction<Optional<SitbBtil>,Void>() {
+                Futures.transform( readFuture, new AsyncFunction<Optional<SitbBtil>,Void>() {
 
-                @Override
-                public ListenableFuture<Void> apply(
-                        final Optional<SitbBtil> btilData ) throws Exception {
+                    @Override
+                    public ListenableFuture<Void> apply(
+                            final Optional<SitbBtil> btilData ) throws Exception {
 
-                    SitbBtil.BtilStatus btilStatus = SitbBtil.BtilStatus.Up;
-                    if( btilData.isPresent() ) {
-                        btilStatus = btilData.get().getBtilStatus();
-                    }
-
-                    LOG.debug( "Read btil status: {}", btilStatus );
-
-                    if( btilStatus == SitbBtil.BtilStatus.Up ) {
-
-                        if( outOfBread() ) {
-                            LOG.debug( "Btil is out of bread" );
-
-                            return Futures.immediateFailedCheckedFuture(
-                                    new TransactionCommitFailedException( "", makeBtilOutOfBreadError() ) );
+                        SitbBtil.BtilStatus btilStatus = SitbBtil.BtilStatus.Up;
+                        if( btilData.isPresent() ) {
+                            btilStatus = btilData.get().getBtilStatus();
                         }
 
-                        LOG.debug( "Setting Btil status to Down" );
+                        LOG.debug( "Read btil status: {}", btilStatus );
 
-                        // We're not currently making toast - try to update the status to Down
-                        // to indicate we're going to make toast. This acts as a lock to prevent
-                        // concurrent toasting.
-                        tx.put( LogicalDatastoreType.OPERATIONAL, TOASTER_IID,
-                                buildBtil( SitbBtil.BtilStatus.Down ) );
-                        return tx.submit();
+                        if( btilStatus == SitbBtil.BtilStatus.Up ) {
+
+                            if( outOfBread() ) {
+                                LOG.debug( "Btil is out of bread" );
+
+                                return Futures.immediateFailedCheckedFuture(
+                                        new TransactionCommitFailedException( "", makeBtilOutOfBreadError() ) );
+                            }
+
+                            LOG.debug( "Setting Btil status to Down" );
+
+                            // We're not currently making toast - try to update the status to Down
+                            // to indicate we're going to make toast. This acts as a lock to prevent
+                            // concurrent toasting.
+                            tx.put( LogicalDatastoreType.OPERATIONAL, TOASTER_IID,
+                                    buildBtil( SitbBtil.BtilStatus.Down ) );
+                            return tx.submit();
+                        }
+
+                        LOG.debug( "Oops - already making toast!" );
+
+                        // Return an error since we are already making toast. This will get
+                        // propagated to the commitFuture below which will interpret the null
+                        // TransactionStatus in the RpcResult as an error condition.
+                        return Futures.immediateFailedCheckedFuture(
+                                new TransactionCommitFailedException( "", makeBtilInUseError() ) );
                     }
-
-                    LOG.debug( "Oops - already making toast!" );
-
-                    // Return an error since we are already making toast. This will get
-                    // propagated to the commitFuture below which will interpret the null
-                    // TransactionStatus in the RpcResult as an error condition.
-                    return Futures.immediateFailedCheckedFuture(
-                            new TransactionCommitFailedException( "", makeBtilInUseError() ) );
-                }
-        } );
+                } );
 
         Futures.addCallback( commitFuture, new FutureCallback<Void>() {
             @Override
@@ -532,7 +527,7 @@ public class OpendaylightBtil implements SitbBtilService, SitbBtilProviderRuntim
 
         if( amountOfBreadInStock.get() > 0 ) {
             BtilRestocked reStockedNotification = new BtilRestockedBuilder()
-                .setAmountOfBread( input.getAmountOfBreadToStock() ).build();
+                    .setAmountOfBread( input.getAmountOfBreadToStock() ).build();
             notificationProvider.publish( reStockedNotification );
         }
 
