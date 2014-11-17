@@ -1,0 +1,73 @@
+  module sitb-device {
+
+    yang-version 1;
+
+    namespace
+      "https://office.bt.com/sites/sitb/device";
+
+    prefix ne;
+
+    organization "BT";
+
+    contact
+      "Steve Curtis <steven.curtis@bt.com>";
+
+    description
+      "ODL Generic Device";
+
+    revision "2014-10-18" {
+      description
+        "SitB DEVICE module in progress.";
+    }
+
+
+    identity ne-type {
+      description
+        "Base for all bread types supported by the device.
+           New bread types not listed here nay be added in the
+           future.";
+    }
+
+    identity cisco-switch {
+      base ne:ne-type;
+      description "Cisco Switch";
+    }
+
+    identity ciena-switch {
+      base ne-type;
+      description "Ciena Switch";
+    }
+
+    identity generic-host {
+      base ne-type;
+      description "Generic Host";
+    }
+
+    typedef DisplayString {
+      type string {
+        length "0 .. 255";
+      }
+      description
+        "YANG version of the SMIv2 DisplayString TEXTUAL-CONVENTION.";
+      reference
+        "RFC 2579, section 2.";
+
+    }
+
+    container sitb-device {
+      presence
+        "Indicates the device service is available";
+      description
+        "Top-level container for all device database objects.";
+
+      leaf deviceManufacturer {
+        type DisplayString;
+        config false;
+        mandatory true;
+        description
+          "The name of the device's manufacturer. For instance,
+                Cisco Ne.";
+      }
+    }  // container device
+
+  }  // module device

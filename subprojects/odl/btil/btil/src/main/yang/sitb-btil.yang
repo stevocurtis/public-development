@@ -1,0 +1,253 @@
+  module sitb-btil {
+
+    yang-version 1;
+
+    namespace
+      "https://office.bt.com/sites/sitb/btil";
+
+    prefix toast;
+
+    organization "BT";
+
+    contact
+      "Steve Curtis <steven.curtis@bt.com>";
+
+    description
+      "ODL Inventory Loader POC";
+
+    revision "2014-10-18" {
+      description
+        "SitB BTIL module in progress.";
+    }
+
+
+    identity toast-type {
+      description
+        "Base for all bread types supported by the btil.
+           New bread types not listed here nay be added in the
+           future.";
+    }
+
+    identity white-bread {
+      base toast:toast-type;
+      description "White bread.";
+    }
+
+    identity wheat-bread {
+      base toast-type;
+      description "Wheat bread.";
+    }
+
+    identity wonder-bread {
+      base toast-type;
+      description "Wonder bread.";
+    }
+
+    identity frozen-waffle {
+      base toast-type;
+      description "Frozen waffle.";
+    }
+
+    identity frozen-bagel {
+      base toast-type;
+      description "Frozen bagel.";
+    }
+
+    identity hash-brown {
+      base toast-type;
+      description "Hash browned potatos.";
+    }
+
+    typedef DisplayString {
+      type string {
+        length "0 .. 255";
+      }
+      description
+        "YANG version of the SMIv2 DisplayString TEXTUAL-CONVENTION.";
+      reference
+        "RFC 2579, section 2.";
+
+    }
+
+    container sitb-btil {
+      presence
+        "Indicates the btil service is available";
+      description
+        "Top-level container for all btil database objects.";
+      leaf btilManufacturer {
+        type DisplayString;
+        config false;
+        mandatory true;
+        description
+          "The name of the btil's manufacturer. For instance,
+                Microsoft Toaster.";
+      }
+
+      leaf btilModelNumber {
+        type DisplayString;
+        config false;
+        mandatory true;
+        description
+          "The name of the btil's model. For instance,
+               Radiant Automatic.";
+      }
+
+      leaf btilStatus {
+        type enumeration {
+          enum "up" {
+            value 1;
+            description
+              "The btil knob position is up.
+                      No toast is being made now.";
+          }
+          enum "down" {
+            value 2;
+            description
+              "The btil knob position is down.
+                      Toast is being made now.";
+          }
+        }
+        config false;
+        mandatory true;
+        description
+          "This variable indicates the current state of
+               the btil.";
+      }
+
+      leaf darknessFactor {
+        type uint32;
+        config true;
+        default 1000;
+        description
+          "The darkness factor. Basically, the number of ms to multiple the doneness value by.";
+      }
+    }  // container btil
+
+    rpc make-toast {
+      description
+        "Make some toast.
+           The toastDone notification will be sent when
+           the toast is finished.
+           An 'in-use' error will be returned if toast
+           is already being made.
+           A 'resource-denied' error will be returned
+           if the btil service is disabled.";
+      input {
+        leaf btilDoneness {
+          type uint32 {
+            range "1 .. 10";
+          }
+          default '5';
+          description
+            "This variable controls how well-done is the
+                   ensuing toast. It should be on a scale of 1 to 10.
+                   Toast made at 10 generally is considered unfit
+                   for human consumption; toast made at 1 is warmed
+                   lightly.";
+        }
+
+        leaf btilToastType {
+          type identityref {
+            base toast:toast-type;
+          }
+          default 'wheat-bread';
+          description
+            "This variable informs the btil of the type of
+                   material that is being toasted. The btil
+                   uses this information, combined with
+                   btilDoneness, to compute for how
+                   long the material must be toasted to achieve
+                   the required doneness.";
+        }
+      }
+    }  // rpc make-toast
+
+    rpc dump-datastore {
+      description
+        "Dump out the contents of the datastore";
+        input {
+                leaf dumpLevel {
+                  type uint32 {
+                    range "0 .. 100";
+                  }
+                  default '0';
+                  description
+                    "Level of dump to perform";
+                }
+              }
+         output
+         {
+            leaf response
+            {
+              type string;
+            }
+         }
+     }  // rpc dump-datastore
+
+    rpc load-inventory {
+      description
+        "Programatically create some inventory";
+        input {
+                leaf numberOfSwitches {
+                  type uint32 {
+                    range "0 .. 100";
+                  }
+                  default '0';
+                  description
+                    "The number of switch devices to programatically create";
+                }
+
+                leaf numberOfHosts {
+                  type uint32 {
+                    range "0 .. 100";
+                  }
+                  default '0';
+                  description
+                    "The number of host devices to programatically create";
+                }
+              }
+         output
+         {
+            leaf response
+            {
+              type string;
+            }
+         }
+     }  // rpc dump-datastore
+
+    rpc cancel-toast {
+      description
+        "Stop making toast, if any is being made.
+           A 'resource-denied' error will be returned
+           if the btil service is disabled.";
+    }  // rpc cancel-toast
+
+    rpc restock-btil {
+        description
+          "Restocks the btil with the amount of bread specified.";
+
+        input {
+            leaf amountOfBreadToStock {
+                type uint32;
+                description
+                  "Indicates the amount of bread to re-stock";
+            }
+        }
+    }
+
+    notification btilOutOfBread {
+      description
+        "Indicates that the btil has run of out bread.";
+    }  // notification btilOutOfStock
+
+    notification btilRestocked {
+      description
+        "Indicates that the btil has run of out bread.";
+      leaf amountOfBread {
+        type uint32;
+        description
+          "Indicates the amount of bread that was re-stocked";
+      }
+    }  // notification btilOutOfStock
+
+  }  // module btil
