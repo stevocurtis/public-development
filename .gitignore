@@ -8,3 +8,4 @@ release.properties
 *.iml
 yang-gen*
 META-INF
+MANIFEST.MF
