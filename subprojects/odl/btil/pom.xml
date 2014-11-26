@@ -5,7 +5,7 @@
 <parent>
     <groupId>org.opendaylight.controller</groupId>
     <artifactId>commons.opendaylight</artifactId>
-    <version>1.5.0-SNAPSHOT</version>
+    <version>1.4.3-Helium-SR1</version>
   </parent>
 
   <groupId>com.bt.sitb.opendaylight.controller.samples</groupId>
@@ -16,8 +16,8 @@
   <modules>
     <module>btil</module>
     <module>btil-provider</module>
-      <module>btil-config</module>
-      <module>btil-it</module>
+    <module>btil-config</module>
+    <module>btil-it</module>
   </modules>
 
 
