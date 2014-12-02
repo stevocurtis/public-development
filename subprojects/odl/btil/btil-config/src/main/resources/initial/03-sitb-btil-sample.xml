@@ -35,43 +35,43 @@
                     </notification-service>
                 </module>
 
-                <module>
-                    <type xmlns:sitb-kitchen="urn:opendaylight:params:xml:ns:yang:controller:config:sitb-kitchen-service:impl">
-                        sitb-kitchen:sitb-kitchen-service-impl
-                    </type>
-                    <name>sitb-kitchen-service-impl</name>
+                <!--<module>-->
+                    <!--<type xmlns:sitb-kitchen="urn:opendaylight:params:xml:ns:yang:controller:config:sitb-kitchen-service:impl">-->
+                        <!--sitb-kitchen:sitb-kitchen-service-impl-->
+                    <!--</type>-->
+                    <!--<name>sitb-kitchen-service-impl</name>-->
 
-                    <rpc-registry>
-                        <type xmlns:binding="urn:opendaylight:params:xml:ns:yang:controller:md:sal:binding">binding:binding-rpc-registry</type>
-                        <name>binding-rpc-broker</name>
-                    </rpc-registry>
+                    <!--<rpc-registry>-->
+                        <!--<type xmlns:binding="urn:opendaylight:params:xml:ns:yang:controller:md:sal:binding">binding:binding-rpc-registry</type>-->
+                        <!--<name>binding-rpc-broker</name>-->
+                    <!--</rpc-registry>-->
 
-                    <notification-service>
-                        <type xmlns:binding="urn:opendaylight:params:xml:ns:yang:controller:md:sal:binding">
-                            binding:binding-notification-service
-                        </type>
-                        <name>binding-notification-broker</name>
-                    </notification-service>
-                </module>
+                    <!--<notification-service>-->
+                        <!--<type xmlns:binding="urn:opendaylight:params:xml:ns:yang:controller:md:sal:binding">-->
+                            <!--binding:binding-notification-service-->
+                        <!--</type>-->
+                        <!--<name>binding-notification-broker</name>-->
+                    <!--</notification-service>-->
+                <!--</module>-->
             </modules>
 
-            <services xmlns="urn:opendaylight:params:xml:ns:yang:controller:config">
-                <service>
-                    <type xmlns:sitb-kitchen="urn:opendaylight:params:xml:ns:yang:controller:config:sitb-kitchen-service:impl">
-                        sitb-kitchen:sitb-kitchen-service
-                    </type>
-                    <instance>
-                        <name>sitb-kitchen-service</name>
-                        <provider>/modules/module[type='sitb-kitchen-service-impl'][name='sitb-kitchen-service-impl']</provider>
-                    </instance>
-                </service>
-            </services>
+            <!--<services xmlns="urn:opendaylight:params:xml:ns:yang:controller:config">-->
+                <!--<service>-->
+                    <!--<type xmlns:sitb-kitchen="urn:opendaylight:params:xml:ns:yang:controller:config:sitb-kitchen-service:impl">-->
+                        <!--sitb-kitchen:sitb-kitchen-service-->
+                    <!--</type>-->
+                    <!--<instance>-->
+                        <!--<name>sitb-kitchen-service</name>-->
+                        <!--<provider>/modules/module[type='sitb-kitchen-service-impl'][name='sitb-kitchen-service-impl']</provider>-->
+                    <!--</instance>-->
+                <!--</service>-->
+            <!--</services>-->
         </data>
 
     </configuration>
 
     <required-capabilities>
-        <capability>urn:opendaylight:params:xml:ns:yang:controller:config:sitb-kitchen-service:impl?module=sitb-kitchen-service-impl&amp;revision=2014-10-18</capability>
+        <!--<capability>urn:opendaylight:params:xml:ns:yang:controller:config:sitb-kitchen-service:impl?module=sitb-kitchen-service-impl&amp;revision=2014-10-18</capability>-->
         <capability>urn:opendaylight:params:xml:ns:yang:controller:config:sitb-btil-provider:impl?module=sitb-btil-provider-impl&amp;revision=2014-10-18</capability>
     </required-capabilities>
 

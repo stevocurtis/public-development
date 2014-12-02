@@ -18,6 +18,7 @@
     <module>btil-provider</module>
     <module>btil-config</module>
     <module>btil-it</module>
+    <module>btil-features</module>
   </modules>
 
 

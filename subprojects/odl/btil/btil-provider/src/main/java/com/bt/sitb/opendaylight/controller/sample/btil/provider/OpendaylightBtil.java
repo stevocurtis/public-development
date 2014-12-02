@@ -20,14 +20,14 @@ import org.opendaylight.controller.md.sal.common.api.data.*;
 import org.opendaylight.controller.sal.binding.api.NotificationProviderService;
 import org.opendaylight.controller.sal.core.*;
 import org.opendaylight.controller.sal.topology.IPluginInTopologyService;
-import org.opendaylight.controller.sal.topology.IPluginOutTopologyService;
+//import org.opendaylight.controller.sal.topology.IPluginOutTopologyService;
 import org.opendaylight.controller.sal.topology.TopoEdgeUpdate;
 import org.opendaylight.controller.sal.utils.ServiceHelper;
 import org.opendaylight.controller.sal.utils.Status;
-import org.opendaylight.controller.switchmanager.ISwitchManager;
-import org.opendaylight.controller.switchmanager.Switch;
-import org.opendaylight.controller.switchmanager.SwitchConfig;
-import org.opendaylight.controller.topologymanager.ITopologyManager;
+//import org.opendaylight.controller.switchmanager.ISwitchManager;
+//import org.opendaylight.controller.switchmanager.Switch;
+//import org.opendaylight.controller.switchmanager.SwitchConfig;
+//import org.opendaylight.controller.topologymanager.ITopologyManager;
 import org.opendaylight.yang.gen.v1.https.office.bt.com.sites.sitb.btil.rev141018.*;
 import org.opendaylight.yang.gen.v1.https.office.bt.com.sites.sitb.device.rev141018.*;
 import org.opendaylight.yangtools.yang.binding.DataObject;
@@ -178,44 +178,44 @@ public class OpendaylightBtil implements SitbBtilService, SitbBtilProviderRuntim
         LOG.info ("***** dump data store {}", input) ;
 
 
-        ITopologyManager topologyManager = (ITopologyManager) ServiceHelper.getInstance(ITopologyManager.class, "default", this);
-        ISwitchManager switchManager = (ISwitchManager) ServiceHelper.getInstance(ISwitchManager.class, "default", this);
+//        ITopologyManager topologyManager = (ITopologyManager) ServiceHelper.getInstance(ITopologyManager.class, "default", this);
+//        ISwitchManager switchManager = (ISwitchManager) ServiceHelper.getInstance(ISwitchManager.class, "default", this);
 
         StringWriter stringWriter = new StringWriter () ;
         PrintWriter writer = new PrintWriter (stringWriter) ;
 
-        Map<Node, Set<Edge>> nodeEdges = topologyManager.getNodeEdges();
-        writer.println("nodeEdges") ;
-        for (Map.Entry<Node, Set<Edge>> nodeEdge : nodeEdges.entrySet())
-        {
-            writer.print("node=" + ReflectionToStringBuilder.toString(nodeEdge.getKey())) ;
-            for (Edge edge : nodeEdge.getValue())
-            {
-                writer.println ("edge=" + ReflectionToStringBuilder.toString(edge)) ;
-            }
-        }
-        Map<Node, Set<NodeConnector>> hostEdges = topologyManager.getNodesWithNodeConnectorHost();
-        writer.println("hostEdges") ;
-        for (Map.Entry<Node, Set<NodeConnector>> hostEdge : hostEdges.entrySet())
-        {
-            writer.println ("node=" + ReflectionToStringBuilder.toString(hostEdge.getKey())) ;
-            for (NodeConnector nodeConnector : hostEdge.getValue())
-            {
-                writer.println ("nodeConnector=" + ReflectionToStringBuilder.toString(nodeConnector)) ;
-                writer.println ("nodeConnector.node=" + ReflectionToStringBuilder.toString(nodeConnector.getNode())) ;
-            }
+//        Map<Node, Set<Edge>> nodeEdges = topologyManager.getNodeEdges();
+//        writer.println("nodeEdges") ;
+//        for (Map.Entry<Node, Set<Edge>> nodeEdge : nodeEdges.entrySet())
+//        {
+//            writer.print("node=" + ReflectionToStringBuilder.toString(nodeEdge.getKey())) ;
+//            for (Edge edge : nodeEdge.getValue())
+//            {
+//                writer.println ("edge=" + ReflectionToStringBuilder.toString(edge)) ;
+//            }
+//        }
+//        Map<Node, Set<NodeConnector>> hostEdges = topologyManager.getNodesWithNodeConnectorHost();
+//        writer.println("hostEdges") ;
+//        for (Map.Entry<Node, Set<NodeConnector>> hostEdge : hostEdges.entrySet())
+//        {
+//            writer.println ("node=" + ReflectionToStringBuilder.toString(hostEdge.getKey())) ;
+//            for (NodeConnector nodeConnector : hostEdge.getValue())
+//            {
+//                writer.println ("nodeConnector=" + ReflectionToStringBuilder.toString(nodeConnector)) ;
+//                writer.println ("nodeConnector.node=" + ReflectionToStringBuilder.toString(nodeConnector.getNode())) ;
+//            }
+//
+//        }
 
-        }
-
-        writer.println("switchNodes") ;
-        List<Switch> nodes = switchManager.getNetworkDevices();
-        for(Switch sw : nodes) {
-            writer.println ("switch=" + ReflectionToStringBuilder.toString(sw)) ;
-            Node node = sw.getNode();
-            writer.println ("node=" + ReflectionToStringBuilder.toString(node)) ;
-            SwitchConfig config = switchManager.getSwitchConfig(node.toString());
-            writer.println ("config=" + ReflectionToStringBuilder.toString(config)) ;
-        }
+//        writer.println("switchNodes") ;
+//        List<Switch> nodes = switchManager.getNetworkDevices();
+//        for(Switch sw : nodes) {
+//            writer.println ("switch=" + ReflectionToStringBuilder.toString(sw)) ;
+//            Node node = sw.getNode();
+//            writer.println ("node=" + ReflectionToStringBuilder.toString(node)) ;
+//            SwitchConfig config = switchManager.getSwitchConfig(node.toString());
+//            writer.println ("config=" + ReflectionToStringBuilder.toString(config)) ;
+//        }
 
         // Add data store
         writer.println("dataStore") ;
@@ -224,24 +224,24 @@ public class OpendaylightBtil implements SitbBtilService, SitbBtilProviderRuntim
         DumpDatastoreOutput output = new DumpDatastoreOutputBuilder().setResponse(stringWriter.toString()).build();
         return Futures.immediateFuture(RpcResultBuilder.<DumpDatastoreOutput>success(output).build());    }
 
-    private Switch createSwitch(Long nodeId)
-    {
-        Switch newSwitch = null;
-        Node node = null;
-        try
-        {
-            node = new Node(Node.NodeIDType.OPENFLOW, nodeId);
-        }
-        catch (ConstructionException e)
-        {
-            LOG.error("ConstructionException thrown while trying to create a new node, detail={}", e.toString());
-        }
-
-        newSwitch = new Switch(node);
-
-        LOG.info("createSwitch for nodeId={} returning newSwitch={}", nodeId, newSwitch);
-        return newSwitch;
-    }
+//    private Switch createSwitch(Long nodeId)
+//    {
+//        Switch newSwitch = null;
+//        Node node = null;
+//        try
+//        {
+//            node = new Node(Node.NodeIDType.OPENFLOW, nodeId);
+//        }
+//        catch (ConstructionException e)
+//        {
+//            LOG.error("ConstructionException thrown while trying to create a new node, detail={}", e.toString());
+//        }
+//
+//        newSwitch = new Switch(node);
+//
+//        LOG.info("createSwitch for nodeId={} returning newSwitch={}", nodeId, newSwitch);
+//        return newSwitch;
+//    }
 
     private Long createNewTopologyId()
     {
@@ -265,15 +265,15 @@ public class OpendaylightBtil implements SitbBtilService, SitbBtilProviderRuntim
         PrintWriter writer = new PrintWriter(stringWriter);
 
         // Get references to relevant odl services
-        ITopologyManager topologyManager = (ITopologyManager) ServiceHelper.getInstance(ITopologyManager.class, "default", this);
-        ISwitchManager switchManager = (ISwitchManager) ServiceHelper.getInstance(ISwitchManager.class, "default", this);
-        IPluginOutTopologyService pluginOutTopologyService = (IPluginOutTopologyService) ServiceHelper.getInstance(IPluginOutTopologyService.class, "default", this);
+//        ITopologyManager topologyManager = (ITopologyManager) ServiceHelper.getInstance(ITopologyManager.class, "default", this);
+//        ISwitchManager switchManager = (ISwitchManager) ServiceHelper.getInstance(ISwitchManager.class, "default", this);
+//        IPluginOutTopologyService pluginOutTopologyService = (IPluginOutTopologyService) ServiceHelper.getInstance(IPluginOutTopologyService.class, "default", this);
         DataBroker dataBroker = (DataBroker) ServiceHelper.getInstance(DataBroker.class, "default", this);
 
         // Create some switches
         Status status = null;
         try {
-            Switch newSwitch = createSwitch(createNewTopologyId());
+//            Switch newSwitch = createSwitch(createNewTopologyId());
             //Node node = Node.fromString(Node.NodeIDType.OPENFLOW, "1");
             Node node = new Node(Node.NodeIDType.OPENFLOW, new Long(1L));
 
