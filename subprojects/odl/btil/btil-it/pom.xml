@@ -23,12 +23,13 @@
       <artifactId>sample-btil</artifactId>
         <version>${project.version}</version>
     </dependency>
+    <!-- no longer used
     <dependency>
       <groupId>com.bt.sitb.opendaylight.controller.samples</groupId>
       <artifactId>sample-btil-consumer</artifactId>
         <version>${project.version}</version>
     </dependency>
-
+    -->
     <dependency>
       <groupId>com.bt.sitb.opendaylight.controller.samples</groupId>
       <artifactId>sample-btil-provider</artifactId>
