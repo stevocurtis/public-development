@@ -11,6 +11,7 @@
     <name>Java Playpen Parent Project</name>
 
     <modules>
+        <module>jcsv-playpen</module>
         <module>opencsv-playpen</module>
         <module>supercsv-playpen</module>
     </modules>
