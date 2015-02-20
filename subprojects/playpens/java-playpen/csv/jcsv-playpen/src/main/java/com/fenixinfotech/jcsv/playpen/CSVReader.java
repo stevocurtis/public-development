@@ -18,7 +18,7 @@ public class CSVReader
 
     public void readCSV(InputStream csvInputStream)
     {
-        logger.info("readCSV with csvFile {}", csvInputStream);
+        logger.info("readCSV with csvInputStream {}", csvInputStream);
 
         Reader reader;
         List<CSVPojo> csvPojos = new ArrayList<CSVPojo>();
@@ -34,6 +34,6 @@ public class CSVReader
             e.printStackTrace();
         }
 
-        logger.info("readCSV with csvFile {} found csvPojos {}", csvInputStream, csvPojos);
+        logger.info("readCSV with csvInputStream {} found csvPojos {}", csvInputStream, csvPojos);
     }
 }
