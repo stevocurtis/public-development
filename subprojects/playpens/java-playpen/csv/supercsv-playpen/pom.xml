@@ -20,6 +20,13 @@
             <version>2.2.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.fenixinfotech</groupId>
+            <artifactId>csv-common-test</artifactId>
+            <version>${project.parent.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 </project>

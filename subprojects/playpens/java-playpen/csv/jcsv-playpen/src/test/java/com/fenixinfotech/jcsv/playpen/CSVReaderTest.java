@@ -1,15 +1,13 @@
 package com.fenixinfotech.jcsv.playpen;
 
+import com.fenixinfotech.csv.common.test.CSVReaderTestBase;
 import org.junit.Test;
 
-import java.io.File;
-
-public class CSVReaderTest
+public class CSVReaderTest extends CSVReaderTestBase
 {
     @Test
     public void testRead()
     {
-        File csvFile = new File("src" + File.separator + "test" + File.separator + "data", "sample.csv");
-        new CSVReader().readCSV(csvFile);
+        new CSVReader().readCSV(getTestFileAsStream());
     }
 }

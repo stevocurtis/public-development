@@ -9,22 +9,20 @@ import org.supercsv.io.CsvBeanReader;
 import org.supercsv.io.ICsvBeanReader;
 import org.supercsv.prefs.CsvPreference;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class CSVReader
 {
     private static final Logger logger = LoggerFactory.getLogger(CSVReader.class);
 
-    public void readCSV(File csvFile)
+    public void readCSV(InputStream csvInputStream)
     {
-        logger.debug("In readCSV with csvFile: {}", csvFile);
+        logger.debug("In readCSV with csvInputStream: {}", csvInputStream);
 
         ICsvBeanReader iCsvBeanReader = null;
         try
         {
-            iCsvBeanReader = new CsvBeanReader(new FileReader(csvFile), CsvPreference.STANDARD_PREFERENCE);
+            iCsvBeanReader = new CsvBeanReader(new InputStreamReader(csvInputStream), CsvPreference.STANDARD_PREFERENCE);
             final String[] header = new String[]{"key", "col1", "col2", "col3"};
             final CellProcessor[] processors = getProcessors();
 
@@ -35,7 +33,7 @@ public class CSVReader
             }
         }
         catch (IOException e) {
-            logger.error("IOException thrown when reading csvFile {}, detail {}", csvFile, e);
+            logger.error("IOException thrown when reading csvInputStream {}, detail {}", csvInputStream, e);
         }
         finally {
             if (iCsvBeanReader != null) {
