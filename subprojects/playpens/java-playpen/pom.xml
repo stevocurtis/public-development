@@ -15,6 +15,7 @@
         <module>csv/jcsv-playpen</module>
         <module>csv/opencsv-playpen</module>
         <module>csv/supercsv-playpen</module>
+        <module>jpa/jpa-common</module>
     </modules>
 
     <build>
