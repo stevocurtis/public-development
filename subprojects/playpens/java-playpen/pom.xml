@@ -29,7 +29,8 @@
                     <configuration>
                         <systemPropertyVariables>
                             <org.slf4j.simpleLogger.defaultLogLevel>debug</org.slf4j.simpleLogger.defaultLogLevel>
-                            <derby.stream.error.file>${basedir}/target/derby.log</derby.stream.error.file>
+                            <derby.stream.error.file>target/derby.log</derby.stream.error.file>
+                            <derby.system.home>target/derbydb</derby.system.home>
                         </systemPropertyVariables>
                     </configuration>
                 </plugin>
