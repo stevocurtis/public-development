@@ -29,8 +29,8 @@
                     <configuration>
                         <systemPropertyVariables>
                             <org.slf4j.simpleLogger.defaultLogLevel>debug</org.slf4j.simpleLogger.defaultLogLevel>
-                            <derby.stream.error.file>${build.directory}/derby.log</derby.stream.error.file>
-                            <derby.system.home>${build.directory}/derbydb</derby.system.home>
+                            <derby.stream.error.file>${project.build.directory}/derby.log</derby.stream.error.file>
+                            <derby.system.home>${project.build.directory}/derbydb</derby.system.home>
                         </systemPropertyVariables>
                     </configuration>
                 </plugin>
