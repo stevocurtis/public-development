@@ -7,6 +7,7 @@
         <groupId>com.fenixinfotech</groupId>
         <artifactId>java-playpen-parent</artifactId>
         <version>0.1-SNAPSHOT</version>
+        <relativePath>../..</relativePath>
     </parent>
     <artifactId>jcsv-playpen</artifactId>
     <packaging>jar</packaging>
