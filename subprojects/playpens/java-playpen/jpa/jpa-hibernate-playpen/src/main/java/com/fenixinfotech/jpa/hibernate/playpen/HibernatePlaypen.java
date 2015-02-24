@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import java.util.Collection;
 
 public class HibernatePlaypen
 {
@@ -31,6 +33,7 @@ public class HibernatePlaypen
         ParentEntity parentEntity = new ParentEntity();
         parentEntity.setName(parentEntityName);
         entityManager.persist(parentEntity);
+        entityManager.flush();
         entityManager.getTransaction().commit();
         logger.info("created parentEntity {}", parentEntity);
         return parentEntity;
@@ -43,5 +46,15 @@ public class HibernatePlaypen
         ParentEntity parentEntity = entityManager.find(ParentEntity.class, id);
         logger.info("read parentEntity {} from id {}", parentEntity, id);
         return parentEntity;
+    }
+
+    public Collection<ParentEntity> readAllParentEntities()
+    {
+        logger.info("reading all ParentEntities");
+        EntityManager entityManager = Persistence.createEntityManagerFactory(hibernatePUEnum.toString()).createEntityManager();
+        Query query = entityManager.createQuery("SELECT p FROM ParentEntity p");
+        Collection<ParentEntity> parentEntities = query.getResultList();
+        logger.info("found {} parentEntities {}", (parentEntities == null ? 0 : parentEntities.size()), parentEntities);
+        return parentEntities;
     }
 }
