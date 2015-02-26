@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.util.Collection;
@@ -28,14 +29,16 @@ public class HibernatePlaypen
     public ParentEntity createParentEntity(String parentEntityName)
     {
         logger.info("creating ParentEntity from parentEntityName {}", parentEntityName);
-        EntityManager entityManager = Persistence.createEntityManagerFactory(hibernatePUEnum.toString()).createEntityManager();
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(hibernatePUEnum.toString());
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         ParentEntity parentEntity = new ParentEntity();
         parentEntity.setName(parentEntityName);
         entityManager.persist(parentEntity);
-        entityManager.flush();
         entityManager.getTransaction().commit();
         logger.info("created parentEntity {}", parentEntity);
+        entityManager.close();
+        entityManagerFactory.close();
         return parentEntity;
     }
 

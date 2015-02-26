@@ -29,8 +29,8 @@
                     <configuration>
                         <systemPropertyVariables>
                             <org.slf4j.simpleLogger.defaultLogLevel>debug</org.slf4j.simpleLogger.defaultLogLevel>
-                            <derby.stream.error.file>${project.build.directory}/derby.log</derby.stream.error.file>
-                            <derby.system.home>${project.build.directory}/derbydb</derby.system.home>
+                            <derby.stream.error.file>${project.build.directory}${file.separator}derby.log</derby.stream.error.file>
+                            <derby.system.home>${project.build.directory}${file.separator}derbydb</derby.system.home>
                         </systemPropertyVariables>
                     </configuration>
                 </plugin>
@@ -51,7 +51,6 @@
             <version>1.7.10</version>
             <scope>provided</scope>
         </dependency>
-
 
         <dependency>
             <groupId>junit</groupId>
