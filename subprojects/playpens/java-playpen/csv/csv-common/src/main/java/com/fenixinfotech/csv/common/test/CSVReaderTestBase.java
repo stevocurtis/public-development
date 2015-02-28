@@ -1,15 +1,15 @@
 package com.fenixinfotech.csv.common.test;
 
-import java.io.File;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 
 public class CSVReaderTestBase
 {
-    public InputStream getTestFileAsStream()
+    public URL getTestFileAsUrl()
     {
-        InputStream inputStream = this.getClass().getResourceAsStream("/sample.csv");
-        return inputStream;
+        URL url = this.getClass().getResource("/sample.csv");
+        return url;
     }
 
     public boolean verifyCSVOutput(List records)

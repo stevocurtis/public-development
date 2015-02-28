@@ -12,7 +12,7 @@
     <artifactId>csveed-playpen</artifactId>
     <packaging>jar</packaging>
 
-    <name>CSVeed Playpen</name>
+    <name>CSV CSVeed Playpen</name>
 
     <dependencies>
         <dependency>
@@ -23,9 +23,8 @@
 
         <dependency>
             <groupId>com.fenixinfotech</groupId>
-            <artifactId>csv-common-test</artifactId>
+            <artifactId>csv-common</artifactId>
             <version>${project.parent.version}</version>
-            <scope>test</scope>
         </dependency>
 
     </dependencies>

@@ -4,28 +4,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.net.URL;
 import java.util.Arrays;
+import java.util.List;
 
 public class CSVReader
 {
     private static final Logger logger = LoggerFactory.getLogger(CSVReader.class);
 
-    public void readCSV(InputStream csvInputStream)
+    public void readCSV(URL csvInputUrl) throws IOException
     {
-        logger.debug("In readCSV with csvInputStream: {}", csvInputStream);
+        logger.debug("In readCSV with csvInputUrl: {}", csvInputUrl);
 
         au.com.bytecode.opencsv.CSVReader csvReader;
-        try {
-            csvReader = new au.com.bytecode.opencsv.CSVReader(new InputStreamReader(csvInputStream), ',', '"', 0);
-            String[] nextLine;
-            while((nextLine = csvReader.readNext()) != null)
-            {
-                logger.info("Found nextLine {}", Arrays.toString(nextLine));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        csvReader = new au.com.bytecode.opencsv.CSVReader(new InputStreamReader(csvInputUrl.openStream()), ',', '"', 0);
+        List csvPojos = csvReader.readAll();
 
-        logger.debug("FinishedCSV");
+        logger.info("readCSV with csvInputStream {} found csvPojos {}", csvInputUrl, csvPojos);
     }
 }

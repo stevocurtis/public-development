@@ -11,11 +11,10 @@
     <name>Java Playpen Parent Project</name>
 
     <modules>
-        <module>csv/csv-common-test</module>
+        <module>csv/csv-common</module>
         <module>csv/csveed-playpen</module>
         <module>csv/jcsv-playpen</module>
         <module>csv/opencsv-playpen</module>
-        <module>csv/supercsv-playpen</module>
         <module>jpa/jpa-common</module>
         <module>jpa/jpa-hibernate-playpen</module>
     </modules>

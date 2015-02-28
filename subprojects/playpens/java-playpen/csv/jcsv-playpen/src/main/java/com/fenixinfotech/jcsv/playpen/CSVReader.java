@@ -8,32 +8,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.net.URL;
 import java.util.List;
 
 public class CSVReader
 {
     private static final Logger logger = LoggerFactory.getLogger(CSVReader.class);
 
-    public void readCSV(InputStream csvInputStream)
+    public void readCSV(URL csvInputUrl) throws IOException
     {
-        logger.info("readCSV with csvInputStream {}", csvInputStream);
+        logger.info("readCSV with csvInputUrl {}", csvInputUrl);
 
         Reader reader;
-        List<CSVPojo> csvPojos = new ArrayList<CSVPojo>();
-        try
-        {
-            reader = new InputStreamReader(csvInputStream);
-            ValueProcessorProvider vpp = new ValueProcessorProvider();
-            com.googlecode.jcsv.reader.CSVReader<CSVPojo> csvReader = new CSVReaderBuilder<CSVPojo>(reader).strategy(CSVStrategy.UK_DEFAULT).entryParser(new AnnotationEntryParser<CSVPojo>(CSVPojo.class, vpp)).build();
-            csvPojos = csvReader.readAll();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+        reader = new InputStreamReader(csvInputUrl.openStream());
+        ValueProcessorProvider vpp = new ValueProcessorProvider();
+        com.googlecode.jcsv.reader.CSVReader<CSVPojo> csvReader = new CSVReaderBuilder<CSVPojo>(reader).strategy(CSVStrategy.UK_DEFAULT).entryParser(new AnnotationEntryParser<CSVPojo>(CSVPojo.class, vpp)).build();
+        List<CSVPojo> csvPojos = csvReader.readAll();
 
-        logger.info("readCSV with csvInputStream {} found csvPojos {}", csvInputStream, csvPojos);
+        logger.info("readCSV with csvInput {} found csvPojos {}", csvInputUrl, csvPojos);
     }
 }

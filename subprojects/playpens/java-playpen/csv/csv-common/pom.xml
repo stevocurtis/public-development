@@ -9,25 +9,9 @@
         <version>0.1-SNAPSHOT</version>
         <relativePath>../..</relativePath>
     </parent>
-    <artifactId>supercsv-playpen</artifactId>
+    <artifactId>csv-common</artifactId>
     <packaging>jar</packaging>
 
-    <name>Super CSV Playpen</name>
-
-    <dependencies>
-        <dependency>
-            <groupId>net.sf.supercsv</groupId>
-            <artifactId>super-csv</artifactId>
-            <version>2.2.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fenixinfotech</groupId>
-            <artifactId>csv-common-test</artifactId>
-            <version>${project.parent.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-    </dependencies>
+    <name>CSV Common</name>
 
 </project>

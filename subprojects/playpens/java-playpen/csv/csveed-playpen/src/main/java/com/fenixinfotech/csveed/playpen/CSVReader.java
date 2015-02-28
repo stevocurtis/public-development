@@ -6,21 +6,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.util.ArrayList;
+import java.net.URL;
 import java.util.List;
 
 public class CSVReader {
     private static final Logger logger = LoggerFactory.getLogger(CSVReader.class);
 
-    public void readCSV(InputStream csvInputStream) {
-        logger.info("readCSV with csvInputStream {}", csvInputStream);
+    public void readCSV(URL csvInputUrl) throws IOException
+    {
+        logger.info("readCSV with csvInputUrl {}", csvInputUrl);
 
-        Reader reader;
-        List<CSVPojo> csvPojos = new ArrayList<CSVPojo>();
-        reader = new InputStreamReader(csvInputStream);
+        Reader reader = new InputStreamReader(csvInputUrl.openStream());
         CsvClient<CSVPojo> csvReader = new CsvClientImpl<CSVPojo>(reader, CSVPojo.class);
-        csvPojos = csvReader.readBeans();
+        List<CSVPojo> csvPojos = csvReader.readBeans();
 
-        logger.info("readCSV with csvInputStream {} found csvPojos {}", csvInputStream, csvPojos);
+        logger.info("readCSV with csvInputUrl {} found csvPojos {}", csvInputUrl, csvPojos);
     }
 }
