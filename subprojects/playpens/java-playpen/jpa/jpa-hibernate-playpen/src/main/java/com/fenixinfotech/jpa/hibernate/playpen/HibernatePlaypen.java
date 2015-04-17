@@ -38,7 +38,6 @@ public class HibernatePlaypen
         entityManager.getTransaction().commit();
         logger.info("created parentEntity {}", parentEntity);
         entityManager.close();
-        z
         entityManagerFactory.close();
         return parentEntity;
     }
