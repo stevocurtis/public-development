@@ -22,7 +22,7 @@ public class YAMLReader
 
         Constructor constructor = new Constructor(YAMLPojo.class);
         TypeDescription yamlPojoDescription = new TypeDescription(YAMLPojo.class);
-        yamlPojoDescription.putMapPropertyType("entrymap", YAMLPojo.EntryMap.class, Object.class);
+        yamlPojoDescription.putMapPropertyType("entrymap", YAMLPojoEntryMap.class, Object.class);
         constructor.addTypeDescription(yamlPojoDescription);
 
         Yaml yaml = new Yaml(constructor);

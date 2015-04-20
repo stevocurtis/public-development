@@ -7,12 +7,6 @@ public class YAMLPojo
     private String id;
     private List<YAMLPojoEntryMap> entrymap;
 
-//    public YAMLPojo(String id, List<EntryMap> entrymap)
-//    {
-//        this.id = id;
-//        this.entrymap = entrymap;
-//    }
-
     public String getId()
     {
         return id;
