@@ -1,0 +1,8 @@
+id: 1
+entrymap:
+  - key: key1
+    att: value1
+  - key: key2
+    att: value2
+  - key: key3
+    att: value3

@@ -17,6 +17,7 @@
         <module>csv/opencsv-playpen</module>
         <module>jpa/jpa-common</module>
         <module>jpa/jpa-hibernate-playpen</module>
+        <module>yaml/snakeyaml-playpen</module>
     </modules>
 
     <build>
