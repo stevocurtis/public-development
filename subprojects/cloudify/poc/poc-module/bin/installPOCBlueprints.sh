@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd ~/cloudify/blueprints
-poc_blueprint_folder="/vagrant_data/poc-module/blueprints"
+export poc_blueprint_folder="/vagrant_data/poc-module/blueprints"
 echo "Uploadng the blueprint and create a deployment"
 cfy blueprints upload -b basicsinglenode -p ${poc_blueprint_folder}/basic-single-node-blueprint.yaml
 
