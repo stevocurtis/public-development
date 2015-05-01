@@ -5,4 +5,4 @@ from cloudify.decorators import operation
 
 @operation
 def simplelogger(**kwargs):
-    print "*** running simplelogger ***"
+    ctx.logger.info("*** running simplelogger ***")
