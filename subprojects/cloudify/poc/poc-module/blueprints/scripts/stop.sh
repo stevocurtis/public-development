@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "Stopping ..."
+ctx logger info "Stopping ..."

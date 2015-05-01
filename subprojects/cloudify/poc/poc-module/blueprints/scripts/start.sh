@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "Starting ..."
+ctx logger info "Starting ..."
