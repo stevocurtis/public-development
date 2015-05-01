@@ -1,6 +1,11 @@
 #!/bin/bash
 
 if [ ! -z "$1" ]; then
+    bp="bp-$1"
+    dep="dep-$1"
+fi
+
+if [ ! -z "$2" ]; then
     dep=$1
 fi
 
