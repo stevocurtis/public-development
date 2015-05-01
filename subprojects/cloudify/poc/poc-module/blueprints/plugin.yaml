@@ -1,4 +1,4 @@
 plugins:
   cloudify-poc:
     executor: central_deployment_agent
-    source: .
+    source: cloudify-poc
