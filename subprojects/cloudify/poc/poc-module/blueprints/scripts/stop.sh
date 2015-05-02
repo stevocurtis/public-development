@@ -1,3 +1,3 @@
 #!/bin/bash
-
-ctx logger info "Stopping ..."
+me=`basename "$0"`
+ctx logger info "*** called ${me} ***"

@@ -34,8 +34,7 @@ node_templates:
     type: cloudify.nodes.SoftwareComponent
     interfaces:
       cloudify.interfaces.lifecycle:
-        start:
-          implementation: cloudify-poc.mylogger.tasks.simplelogger
+        start: scripts/start.sh
         stop: scripts/stop.sh
     relationships:
       - target: basicSingleNode
