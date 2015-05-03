@@ -36,6 +36,9 @@ node_templates:
       cloudify.interfaces.lifecycle:
         start: scripts/start.sh
         stop: scripts/stop.sh
+      non_functionals:
+        logging:
+          implementation: cloudify-poc.mylogger.tasks.simplelogger
     relationships:
       - target: basicSingleNode
         type: cloudify.relationships.contained_in
