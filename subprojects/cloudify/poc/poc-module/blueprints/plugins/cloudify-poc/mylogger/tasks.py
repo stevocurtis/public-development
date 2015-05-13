@@ -1,4 +1,4 @@
- __author__ = '700608667'
+__author__ = '700608667'
 
 from cloudify import ctx
 from cloudify.decorators import operation
