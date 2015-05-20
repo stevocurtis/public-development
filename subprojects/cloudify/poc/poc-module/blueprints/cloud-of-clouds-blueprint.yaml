@@ -1,0 +1,51 @@
+tosca_definitions_version: cloudify_dsl_1_0
+
+
+# Import cloudify types so can get ootb workflows
+imports:
+  - http://www.getcloudify.org/spec/cloudify/3.2/types.yaml
+  - plugin.yaml
+
+inputs:
+
+  host_ip:
+      description: >
+        The ip of the host the application will be deployed on
+
+  agent_user:
+      description: >
+        User name used when SSH-ing into the started machine
+
+  agent_private_key_path:
+      description: >
+        Path to a private key that resided on the management machine.
+        SSH-ing into agent machines will be done with this key.
+
+node_templates:
+  guestHost:
+    type: cloudify.nodes.Compute
+    properties:
+      ip: { get_input: host_ip }
+      cloudify_agent:
+        user: { get_input: agent_user }
+        key: { get_input: agent_private_key_path }
+
+  ovsHost:
+    type: cloudify.nodes.Compute
+    properties:
+      ip: { get_input: host_ip }
+      cloudify_agent:
+        user: { get_input: agent_user }
+        key: { get_input: agent_private_key_path }
+    relationships:
+      - target: guestHost
+        type: cloudify.relationships.connected_to
+
+  ovsApp:
+    type: cloudify.nodes.SoftwareComponent
+    interfaces:
+      cloudify.interfaces.lifecycle:
+        start: scripts/install-ovs.sh
+    relationships:
+      - target: ovsHost
+        type: cloudify.relationships.contained_in
