@@ -10,3 +10,4 @@ yang-gen*
 META-INF
 MANIFEST.MF
 /subprojects/odl/btil/btil-features/*.iml
+.cloudify
