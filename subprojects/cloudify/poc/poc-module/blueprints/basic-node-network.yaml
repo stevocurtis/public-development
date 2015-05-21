@@ -22,7 +22,7 @@ inputs:
         Path to a private key that resided on the management machine.
         SSH-ing into agent machines will be done with this key
 
-
+# simple VM to represent firewall
 node_templates:
   firewallNode: 
     type: cloudify.cloudstack.nodes.VirtualMachine
@@ -37,11 +37,11 @@ node_templates:
        network:
          default:
            default_network: basicNetwork
- 
     relationships:
      - type: cloudify.relationships.connected_to
-       target: basicNetwork
+       target: basicRouter
 
+# simple VM to represent riverbed
   riverbedNode: 
     type: cloudify.cloudstack.nodes.VirtualMachine
     properties:
@@ -55,27 +55,38 @@ node_templates:
        network:
          default:
            default_network: basicNetwork
- 
     relationships:
      - type: cloudify.relationships.connected_to
-       target: basicNetwork
+       target: basicRouter
 
+# create a cloudstack VPC to act as the router
+  basicRouter:
+    type: cloudify.cloudstack.nodes.VPC
+    properties:
+       resource_id: basicRouter
+       network:
+           service_offering: 'default router'
+           zone: test 
+           cidr: 10.5.0.0/16
+    relationships:
+      - type: cloudify.relationships.connected_to
+        target: basicNetwork
+
+# basic network to connect virtual router to
   basicNetwork:
     type: cloudify.cloudstack.nodes.Network
     properties:
        resource_id: test_123 
        network:
          service_offering: basic 
-         zone: public 
+         zone: test 
          gateway: 10.4.1.1
          netmask: 255.255.255.0
-
- # virtualIP:
- #   type: cloudify.nodes.VirtualIP
- #   relationships:
- #     - type: cloudify.relationships.connected_to
- #       target: basicNetwork
-
+    relationships:
+     - type: cloudify.relationships.contained_in
+       target: basicRouter
+ 
+# some software to execute on firewall
   myFirewallLogger:
     type: cloudify.nodes.SoftwareComponent
     interfaces:
