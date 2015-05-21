@@ -36,21 +36,29 @@ node_templates:
            size: 100
        network:
          default:
-           default_network: test_123
+           default_network: basicNetwork
+ 
     relationships:
      - type: cloudify.relationships.connected_to
        target: basicNetwork
 
-  riverbedNode:
-    type: cloudify.nodes.Compute
+  riverbedNode: 
+    type: cloudify.cloudstack.nodes.VirtualMachine
     properties:
-      ip: { get_input: host_ip }
-      cloudify_agent:
-        user: { get_input: agent_user }
-        key: { get_input: agent_private_key_path }
+       cloudify_agent:
+         user: { get_input: agent_user }
+         key: { get_input: agent_private_key_path }
+       server:
+         default:
+           image_id: test
+           size: 100
+       network:
+         default:
+           default_network: basicNetwork
+ 
     relationships:
      - type: cloudify.relationships.connected_to
-       target: basicNetwork 
+       target: basicNetwork
 
   basicNetwork:
     type: cloudify.cloudstack.nodes.Network
