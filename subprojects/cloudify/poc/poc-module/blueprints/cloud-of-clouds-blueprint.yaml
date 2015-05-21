@@ -30,6 +30,15 @@ node_templates:
         user: { get_input: agent_user }
         key: { get_input: agent_private_key_path }
 
+  ovsAgent:
+    type: cloudify.nodes.SoftwareComponent
+    interfaces:
+      cloudify.interfaces.lifecycle:
+        start: scripts/install-ovs-agent.sh
+    relationships:
+      - target: guestHost
+        type: cloudify.relationships.contained_in
+
   ovsHost:
     type: cloudify.nodes.Compute
     properties:
