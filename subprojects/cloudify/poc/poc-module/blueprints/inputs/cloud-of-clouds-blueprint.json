@@ -1,5 +1,5 @@
 {
     "host_ip": "localhost",
-    "agent_user": "vagrant",
+    "agent_user": "root",
     "agent_private_key_path": "~/.ssh/id_rsa"
 }
