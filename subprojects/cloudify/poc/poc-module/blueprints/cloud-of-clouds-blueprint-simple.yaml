@@ -21,8 +21,31 @@ inputs:
         Path to a private key that resided on the management machine.
         SSH-ing into agent machines will be done with this key.
 
+  external_network_name:
+      description: >
+        External name for network.
+
+  virtual_ip_addresses:
+      description: >
+        External name for network.
+
+node_types:
+
+  # base type for provided cloudify types
+  bt.nodes.simple.Network:
+    derived_from: cloudify.nodes.Network
+    properties:
+      resource_id:
+        description: >
+          Identifier for the network.
+        default: ''
+      virtual_ip_addresses:
+        description: >
+          Virtual floating ips to be assigned to the guest hosts
+        default: []
+
 node_templates:
-  guestHost:
+  guestHost1:
     type: cloudify.nodes.Compute
     properties:
       ip: { get_input: host_ip }
@@ -30,13 +53,30 @@ node_templates:
         user: { get_input: agent_user }
         key: { get_input: agent_private_key_path }
 
-  ovsAgent:
+  guestHost2:
+    type: cloudify.nodes.Compute
+    properties:
+      ip: { get_input: host_ip }
+      cloudify_agent:
+        user: { get_input: agent_user }
+        key: { get_input: agent_private_key_path }
+
+  virtualIP1:
     type: cloudify.nodes.SoftwareComponent
     interfaces:
       cloudify.interfaces.lifecycle:
-        start: scripts/install-ovs-agent.sh
+        start: scripts/create-virtual-ip.sh
     relationships:
-      - target: guestHost
+      - target: guestHost1
+        type: cloudify.relationships.contained_in
+
+  virtualIP2:
+    type: cloudify.nodes.SoftwareComponent
+    interfaces:
+      cloudify.interfaces.lifecycle:
+        start: scripts/create-virtual-ip.sh
+    relationships:
+      - target: guestHost2
         type: cloudify.relationships.contained_in
 
   ovsHost:
@@ -47,10 +87,12 @@ node_templates:
         user: { get_input: agent_user }
         key: { get_input: agent_private_key_path }
     relationships:
-      - target: guestHost
+      - target: guestHost1
+        type: cloudify.relationships.connected_to
+      - target: guestHost2
         type: cloudify.relationships.connected_to
 
-  ovsApp:
+  ovsBridge:
     type: cloudify.nodes.SoftwareComponent
     interfaces:
       cloudify.interfaces.lifecycle:
@@ -58,3 +100,16 @@ node_templates:
     relationships:
       - target: ovsHost
         type: cloudify.relationships.contained_in
+
+  external_network:
+    type: bt.nodes.simple.Network
+    properties:
+      resource_id: { get_input: external_network_name }
+      virtual_ip_addresses: [ get_input: virtual_ip_addresses ]
+    interfaces:
+      cloudify.interfaces.lifecycle:
+        start:
+          implementation: cloudify-poc.mylogger.tasks.simplelogger
+    relationships:
+      - target: ovsBridge
+        type: cloudify.relationships.connected_to

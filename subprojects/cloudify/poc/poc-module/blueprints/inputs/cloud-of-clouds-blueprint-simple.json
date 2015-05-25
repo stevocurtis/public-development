@@ -1,5 +1,7 @@
 {
     "host_ip": "localhost",
     "agent_user": "root",
-    "agent_private_key_path": "~/.ssh/id_rsa"
+    "agent_private_key_path": "~/.ssh/id_rsa",
+    "external_network_name": "external_network",
+    "virtual_ip_addresses": ["192.168.0.10", "192.168.0.11"]
 }
