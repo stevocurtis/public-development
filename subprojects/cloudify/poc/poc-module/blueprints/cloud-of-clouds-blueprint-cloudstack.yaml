@@ -141,16 +141,6 @@ node_templates:
       firewall:
 
         ###########################################################
-        # Allow incoming traffic to the customapp application
-        # to pass the firewall
-        ###########################################################
-
-        - type: ingress
-          protocol: TCP
-          cidr: 0.0.0.0/0
-          ports: [{ get_property: [customapp, port] }]
-
-        ###########################################################
         # Allow outgoing traffic so that hosts can download
         # resources from the internet.
         ###########################################################
@@ -199,17 +189,8 @@ node_templates:
             zone: { get_input: cloudstack_zone }
             cidr: 10.5.0.0/16
 
-      ###########################################################
-      # We need this relationship in order to retrieve the
-      # management network id when creating agent VM's
-      ###########################################################
-
-      #- type: cloudify.relationships.connected_to
-      #  target: management_network
-
 outputs:
   endpoint:
     description: Web application endpoint
     value:
       ip_address: { get_attribute: [ customapp_floatingip, floating_ip_address ] }
-      port: { get_property: [ customapp, port ] }
