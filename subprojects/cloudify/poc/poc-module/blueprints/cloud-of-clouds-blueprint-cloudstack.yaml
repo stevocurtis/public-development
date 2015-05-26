@@ -170,7 +170,7 @@ node_templates:
         target: application_vpc
 
   ###########################################################
-  # A floating IP for the web application to be accesible 
+  # A floating IP for the web application to be accessible
   # from the outside 
   ###########################################################
 
@@ -204,8 +204,8 @@ node_templates:
       # management network id when creating agent VM's
       ###########################################################
 
-      - type: cloudify.relationships.connected_to
-        target: management_network
+      #- type: cloudify.relationships.connected_to
+      #  target: management_network
 
 outputs:
   endpoint:
