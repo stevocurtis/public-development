@@ -11,7 +11,7 @@ setup(
     description='cloudify-poc',
 
     # This must correspond to the actual packages in the plugin.
-    packages=['mylogger', 'myworkflow'],
+    packages=['mylogger', 'myworkflow', 'test'],
 
     license='LICENSE',
     zip_safe=False,
