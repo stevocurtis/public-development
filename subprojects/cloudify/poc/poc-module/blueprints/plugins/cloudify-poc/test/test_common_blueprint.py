@@ -19,6 +19,7 @@ class TestTasks(unittest.TestCase):
             for file in files:
                 if re.match(self.blueprint_file_pattern, file):
                     print('found blueprint file {}'.format(file))
+                    #TODO add real validation here
 
     def test_temp(self):
         self.validate_all_blueprints()
