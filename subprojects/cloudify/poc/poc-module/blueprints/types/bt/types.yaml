@@ -1,0 +1,14 @@
+##################################################################################
+# Common BT type definitions
+##################################################################################
+
+node_types:
+
+  # Cloud PoP
+  bt.nodes.CloudPoP:
+    derived_from: cloudify.nodes.Network
+    properties:
+      cloud_pop_name:
+        description: >
+          The name of the cloud pop
+        type: string
