@@ -1,6 +1,3 @@
 {
-    "cloud_pop_name": "London",
-    "pe1_name": "Provider Edge 1",
-    "pe2_name": "Provider Edge 2",
-    "scr_name": "Shared Cloud Router"
+    "cloud_pop_name": "London"
 }

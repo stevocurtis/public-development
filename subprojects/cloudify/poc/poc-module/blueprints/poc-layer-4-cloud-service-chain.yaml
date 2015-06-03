@@ -11,6 +11,21 @@ inputs:
   cloud_pop_name:
       description: >
         The name of the cloud pop
+  pe1_name:
+      description: >
+        The name of the first provider edge
+  pe2_name:
+      description: >
+        The name of the second provider edge
+  scr_name:
+      description: >
+        The name of the shared cloud router
+  fw_name:
+      description: >
+        The name of the firewall
+  acc_name:
+      description: >
+        The name of the accelerator
 
 node_templates:
   # Cloud PoP
