@@ -42,6 +42,6 @@ node_templates:
 
   # Shared Cloud Router
   sharedCloudRouter:
-    type: bt.nodes.ProviderEdge
+    type: bt.nodes.SharedCloudRouter
     properties:
        scr_name: { get_input: scr_name }
