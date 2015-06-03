@@ -18,3 +18,25 @@ node_templates:
     type: bt.nodes.CloudPoP
     properties:
        cloud_pop_name: { get_input: cloud_pop_name }
+
+
+# PE1
+node_templates:
+  providerEdge1:
+    type: bt.nodes.ProviderEdge
+    properties:
+       pe_name: { get_input: pe1_name }
+
+# PE2
+node_templates:
+  providerEdge2:
+    type: bt.nodes.ProviderEdge
+    properties:
+       pe_name: { get_input: pe2_name }
+
+# SCR
+node_templates:
+  sharedCloudRouter:
+    type: bt.nodes.ProviderEdge
+    properties:
+       pe_name: { get_input: scr_name }
