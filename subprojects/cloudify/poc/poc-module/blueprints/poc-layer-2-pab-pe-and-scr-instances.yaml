@@ -12,9 +12,28 @@ inputs:
       description: >
         The name of the cloud pop
 
-# Cloud PoP
 node_templates:
+  # Cloud PoP
   cloudPoP:
     type: bt.nodes.CloudPoP
     properties:
        cloud_pop_name: { get_input: cloud_pop_name }
+
+  # Provider Edge 1
+  providerEdge1:
+    type: bt.nodes.ProviderEdge
+    properties:
+       pe_name: { get_input: pe1_name }
+
+  # Provider Edge 2
+  providerEdge2:
+    type: bt.nodes.ProviderEdge
+    properties:
+       pe_name: { get_input: pe2_name }
+
+# Shared Cloud Router
+node_templates:
+  sharedCloudRouter:
+    type: bt.nodes.ProviderEdge
+    properties:
+       scr_name: { get_input: scr_name }
