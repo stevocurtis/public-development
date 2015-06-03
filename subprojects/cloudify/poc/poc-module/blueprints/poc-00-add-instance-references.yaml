@@ -1,0 +1,28 @@
+tosca_definitions_version: cloudify_dsl_1_0
+
+
+# Import cloudify types so can get ootb workflows
+imports:
+  - http://www.getcloudify.org/spec/cloudify/3.2/types.yaml
+  - types/bt/types.yaml
+  - plugin.yaml
+
+node_types:
+
+  # Cloud PoP
+  bt.nodes.GenericNode:
+    derived_from: cloudify.nodes.Root
+
+  bt.nodes.GenericRelatableNode:
+    derived_from: cloudify.nodes.Root
+
+# Cloud PoP
+node_templates:
+  genericCloudA:
+    type: bt.nodes.GenericNode
+
+  genericCloudB:
+    type: bt.nodes.GenericNode
+
+  genericRelatableNodeC:
+    type: bt.nodes.GenericRelatableNode
