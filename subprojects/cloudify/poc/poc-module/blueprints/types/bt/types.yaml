@@ -12,3 +12,48 @@ node_types:
         description: >
           The name of the cloud pop
         type: string
+
+  # Cloud PoP
+  bt.nodes.CloudPoP:
+    derived_from: cloudify.nodes.Network
+    properties:
+      cloud_pop_name:
+        description: >
+          The name of the cloud pop
+        type: string
+
+  # Provider Edge
+  bt.nodes.ProviderEdge:
+    derived_from: cloudify.nodes.Network
+    properties:
+      pe_name:
+        description: >
+          The name of the provider edge
+        type: string
+
+  # Firewall
+  bt.nodes.Firewall:
+    derived_from: cloudify.nodes.Network
+    properties:
+      fw_name:
+        description: >
+          The name of the firewall
+        type: string
+
+  # Accelerator
+  bt.nodes.Accelerator:
+    derived_from: cloudify.nodes.Network
+    properties:
+      acc_name:
+        description: >
+          The name of the accelerator
+        type: string
+
+  # Shared Cloud Router
+  bt.nodes.SharedCloudRouter:
+    derived_from: cloudify.nodes.Network
+    properties:
+      scr_name:
+        description: >
+          The name of the shared cloud router
+        type: string
