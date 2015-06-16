@@ -18,6 +18,7 @@
         <module>jpa/jpa-common</module>
         <module>jpa/jpa-hibernate-playpen</module>
         <module>yaml/snakeyaml-playpen</module>
+        <module>ehcache/ehcache-playpen</module>
     </modules>
 
     <build>
