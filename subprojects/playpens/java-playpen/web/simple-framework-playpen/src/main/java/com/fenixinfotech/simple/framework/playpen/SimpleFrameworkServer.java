@@ -19,6 +19,13 @@ class SimpleFrameworkServer implements Container
 {
     private static final Logger logger = LoggerFactory.getLogger(SimpleFrameworkServer.class);
 
+    private Container container;
+    private Server server;
+    private Connection connection;
+    private SocketAddress address;
+    public static final int defaultPort = 1234;
+    public static final String defaultResponseBody = "Hello World";
+
     public void handle(Request request, Response response)
     {
         logger.info("received request {} and response {}", request, response);
@@ -33,7 +40,7 @@ class SimpleFrameworkServer implements Container
             response.setDate("Date", time);
             response.setDate("Last-Modified", time);
 
-            body.println("Hello World");
+            body.println(defaultResponseBody);
             body.close();
         }
         catch (IOException e)
@@ -44,21 +51,36 @@ class SimpleFrameworkServer implements Container
         logger.info("processed request {} and response {}", request, response);
     }
 
-    public void runServer(String[] args) throws IOException
+    public void runServer() throws IOException
     {
-        logger.info("starting simple framework server");
+        runServer(defaultPort);
+    }
 
-        Container container = new SimpleFrameworkServer();
-        Server server = new ContainerServer(container);
-        Connection connection = new SocketConnection(server);
-        SocketAddress address = new InetSocketAddress(8181); // TODO data drive this port
+    public void runServer(int port) throws IOException
+    {
+        logger.info("starting simple framework server on port {}", port);
+
+        container = new SimpleFrameworkServer();
+        server = new ContainerServer(container);
+        connection = new SocketConnection(server);
+        address = new InetSocketAddress(port);
         connection.connect(address);
 
-        logger.info("bootstrap of simple framework server complete");
+        logger.info("bootstrap of simple framework server complete, running on http://localhost:{}", port);
+    }
+
+    public void stopServer() throws IOException
+    {
+        logger.info("stopping simple framework server");
+
+        if (null != server)
+            server.stop();
+
+        logger.info("stopping of simple framework server complete");
     }
 
     public static void main(String[] args) throws IOException
     {
-        new SimpleFrameworkServer().runServer(args);
+        new SimpleFrameworkServer().runServer();
     }
 }
