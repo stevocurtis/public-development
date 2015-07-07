@@ -15,10 +15,11 @@
         <module>csv/csveed-playpen</module>
         <module>csv/jcsv-playpen</module>
         <module>csv/opencsv-playpen</module>
+        <module>ehcache/ehcache-playpen</module>
         <module>jpa/jpa-common</module>
         <module>jpa/jpa-hibernate-playpen</module>
+        <module>web/simple-framework-playpen</module>
         <module>yaml/snakeyaml-playpen</module>
-        <module>ehcache/ehcache-playpen</module>
     </modules>
 
     <build>
