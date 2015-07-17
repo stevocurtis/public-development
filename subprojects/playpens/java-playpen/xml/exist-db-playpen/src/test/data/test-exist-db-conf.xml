@@ -1,0 +1,4 @@
+<db-connection cacheSize="48M" collectionCache="24M" database="native"
+               files="target" pageSize="4096" nodesBuffer="-1">
+    <pool min="1" max="10" sync-period="240000" wait-before-shutdown="60000"/>
+</db-connection>
