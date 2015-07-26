@@ -1,16 +1,16 @@
 package com.fenixinfotech.jmx.playpen;
 
-import com.fenixinfotech.jmx.playpen.MbeanMonitor;
+import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class MbeanMonitorTest
 {
-
-    @org.junit.Test
+    @Test
     public void testConnect() throws Exception
     {
-        new MbeanMonitor();
+        MbeanMonitor mbeanMonitor = new MbeanMonitor();
+        mbeanMonitor.connect("localhost", "4444");
         assertTrue(true); // TODO add real test
     }
 }
