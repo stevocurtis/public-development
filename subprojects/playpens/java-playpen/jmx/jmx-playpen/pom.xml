@@ -20,12 +20,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <systemPropertyVariables>
-                        <com.sun.management.jmxremote/>
-                        <com.sun.management.jmxremote.port>4444</com.sun.management.jmxremote.port>
-                        <com.sun.management.jmxremote.authenticate>false</com.sun.management.jmxremote.authenticate>
-                        <com.sun.management.jmxremote.ssl>false</com.sun.management.jmxremote.ssl>
-                    </systemPropertyVariables>
+                    <!--<argLine>-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=4444 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false</argLine>-->
+                    <argLine>-Dcom.sun.management.jmxremote
+                             -Dcom.sun.management.jmxremote.port=4444
+                             -Dcom.sun.management.jmxremote.authenticate=false
+                             -Dcom.sun.management.jmxremote.ssl=false</argLine>
                 </configuration>
             </plugin>
         </plugins>
