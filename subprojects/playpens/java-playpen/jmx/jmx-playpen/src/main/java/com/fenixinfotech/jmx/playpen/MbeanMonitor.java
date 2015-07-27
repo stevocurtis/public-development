@@ -9,9 +9,7 @@ import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Class to monitor mbean status.
@@ -22,14 +20,24 @@ public class MbeanMonitor
 
     public void connect(String host, String port) throws IOException
     {
-        logger.info("connect with host {} and port", host, port);
+        connect(host, port, null, null);
+    }
+
+    public void connect(String host, String port, String username, String password) throws IOException
+    {
+        logger.info("connect with host {} port {} username {} password {}", host, port, username, password);
 
         if (port != null)
         {
             // retrieve the RMI connector server stub jmxrmi
             JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://:" + port + "/jmxrmi");
-            JMXConnector jmxConnector = JMXConnectorFactory.connect(url);
-            logger.debug("created RMI connector client to url {}", url);
+            Map<String, String[]> env = new HashMap<String, String[]>();
+            if (username != null && password != null)
+            {
+                env.put(JMXConnector.CREDENTIALS, new String[]{username, password});
+            }
+            JMXConnector jmxConnector = JMXConnectorFactory.connect(url, env);
+            logger.debug("created RMI connector client to url {} with env ", url, env);
 
             MBeanServerConnection mBeanServerConnection = jmxConnector.getMBeanServerConnection();
             logger.debug("opened mbean server connection");
