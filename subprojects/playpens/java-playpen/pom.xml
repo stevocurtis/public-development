@@ -19,6 +19,7 @@
         <module>jmx/jmx-playpen</module>
         <module>jpa/jpa-common</module>
         <module>jpa/jpa-hibernate-playpen</module>
+        <module>thread/thread-playpen</module>
         <module>web/simple-framework-playpen</module>
         <module>xml/exist-db-playpen</module>
         <module>yaml/snakeyaml-playpen</module>
