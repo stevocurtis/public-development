@@ -28,6 +28,11 @@ public class ThreadPlaypen
         logger.info("creating fixed thread pool of size {} with {} threads", threadPoolSize, numThreads);
 
         ExecutorService executorService = Executors.newFixedThreadPool(threadPoolSize);
+
+        // start monitoring thread
+        Runnable monitoringWorker = new MonitorTask(executorService, "fixed pool");
+        executorService.execute(monitoringWorker);
+
         for(int i=0; i<numThreads; i++)
         {
             Runnable worker = new RunnableTask();
