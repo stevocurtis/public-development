@@ -23,23 +23,23 @@ class JerseySimpleFrameworkServer extends FrameworkServerBase
 
     public void runServer(int port) throws IOException
     {
-        logger.info("starting JrestySimpleFrameworkServer server on port {}", port);
+        logger.info("starting JerseySimpleFrameworkServer server on port {}", port);
 
         URI baseUri = UriBuilder.fromUri("http://localhost/").port(port).build();
         ResourceConfig config = new ResourceConfig(JerseyResource.class);
         server = SimpleContainerFactory.create(baseUri, config);
 
-        logger.info("bootstrap of JrestySimpleFrameworkServer server complete, running on http://localhost:{}", port);
+        logger.info("bootstrap of JerseySimpleFrameworkServer server complete, running on http://localhost:{}", port);
     }
 
     public void stopServer() throws IOException
     {
-        logger.info("stopping JrestySimpleFrameworkServer");
+        logger.info("stopping JerseySimpleFrameworkServer");
 
         if (null != server)
             server.close();
 
-        logger.info("stopping of JrestySimpleFrameworkServer complete");
+        logger.info("stopping of JerseySimpleFrameworkServer complete");
     }
 
     public static void main(String[] args) throws IOException
