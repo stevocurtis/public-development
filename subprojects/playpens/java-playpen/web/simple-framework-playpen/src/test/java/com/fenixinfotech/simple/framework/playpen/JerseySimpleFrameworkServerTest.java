@@ -23,11 +23,13 @@ public class JerseySimpleFrameworkServerTest
     private static final Logger logger = LoggerFactory.getLogger(JerseySimpleFrameworkServerTest.class);
     JerseySimpleFrameworkServer simpleFrameworkServer;
 
+    private int portNumber = 4321; // Set different from default since on CI server can take a while to shut down between tests
+
     @Before
     public void init() throws IOException
     {
         simpleFrameworkServer = new JerseySimpleFrameworkServer();
-        simpleFrameworkServer.runServer();
+        simpleFrameworkServer.runServer(portNumber);
     }
 
 
@@ -44,7 +46,7 @@ public class JerseySimpleFrameworkServerTest
 
         logger.info("testing http GET");
 
-        HttpUriRequest getRequest = new HttpGet( "http://localhost:" + JerseySimpleFrameworkServer.defaultPort + "/jerseyresource");
+        HttpUriRequest getRequest = new HttpGet( "http://localhost:" + portNumber + "/jerseyresource");
         HttpResponse getResponse = HttpClientBuilder.create().build().execute(getRequest);
 
         assertEquals(HttpStatus.SC_OK,                          getResponse.getStatusLine().getStatusCode());
@@ -52,7 +54,7 @@ public class JerseySimpleFrameworkServerTest
 
         logger.info("testing http POST");
 
-        HttpUriRequest postRequest = new HttpPost( "http://localhost:" + JerseySimpleFrameworkServer.defaultPort + "/jerseyresource");
+        HttpUriRequest postRequest = new HttpPost( "http://localhost:" + portNumber + "/jerseyresource");
         HttpResponse postResponse = HttpClientBuilder.create().build().execute(postRequest);
 
         assertEquals(HttpStatus.SC_OK,                          postResponse.getStatusLine().getStatusCode());
