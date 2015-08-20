@@ -15,7 +15,7 @@ import java.io.PrintStream;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 
-class SimpleFrameworkServer implements Container
+class SimpleFrameworkServer extends FrameworkServerBase implements Container
 {
     private static final Logger logger = LoggerFactory.getLogger(SimpleFrameworkServer.class);
 
@@ -23,7 +23,6 @@ class SimpleFrameworkServer implements Container
     private Server server;
     private Connection connection;
     private SocketAddress address;
-    public static final int defaultPort = 1234;
     public static final String defaultResponseBody = "Hello World";
 
     public void handle(Request request, Response response)
