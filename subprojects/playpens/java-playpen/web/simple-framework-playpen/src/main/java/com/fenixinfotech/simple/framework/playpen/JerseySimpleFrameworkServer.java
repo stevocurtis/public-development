@@ -15,6 +15,7 @@ class JerseySimpleFrameworkServer extends FrameworkServerBase
     private static final Logger logger = LoggerFactory.getLogger(JerseySimpleFrameworkServer.class);
 
     private SimpleServer server;
+    public static final int defaultPort = 4321;
 
     public void runServer() throws IOException
     {
