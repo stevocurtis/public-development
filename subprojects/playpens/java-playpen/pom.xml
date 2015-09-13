@@ -11,6 +11,7 @@
     <name>Java Playpen Parent Project</name>
 
     <modules>
+        <module>aop/aspectj-playpen</module>
         <module>csv/csv-common</module>
         <module>csv/csveed-playpen</module>
         <module>csv/jcsv-playpen</module>
