@@ -13,6 +13,6 @@ public class AspectedFunctionalityTest
     @Test
     public void testPower() throws Exception
     {
-        new AspectedFunctionality().power(2, 3);
+        assertEquals(8, new AspectedFunctionality().power(2, 3), 0);
     }
 }
