@@ -1,5 +1,7 @@
 package com.fenixinfotech.simple.framework.playpen;
 
+import com.fenixinfotech.web.common.FrameworkServerBase;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;

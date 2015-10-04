@@ -22,6 +22,8 @@
         <module>jpa/jpa-common</module>
         <module>jpa/jpa-hibernate-playpen</module>
         <module>thread/thread-playpen</module>
+        <module>web/web-common</module>
+        <module>web/grizzly-framework-playpen</module>
         <module>web/simple-framework-playpen</module>
         <module>xml/exist-db-playpen</module>
         <module>yaml/snakeyaml-playpen</module>

@@ -9,10 +9,10 @@
         <version>0.1-SNAPSHOT</version>
         <relativePath>../..</relativePath>
     </parent>
-    <artifactId>simple-framework-playpen</artifactId>
+    <artifactId>grizzly-framework-playpen</artifactId>
     <packaging>jar</packaging>
 
-    <name>Simple Framework Playpen</name>
+    <name>Grizzly Framework Playpen</name>
 
     <dependencies>
         <dependency>
@@ -22,9 +22,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.glassfish.jersey.containers</groupId>
-            <artifactId>jersey-container-simple-http</artifactId>
-            <version>2.21</version>
+            <groupId>org.glassfish.grizzly</groupId>
+            <artifactId>grizzly-http-server</artifactId>
+            <version>2.3.23</version>
         </dependency>
 
     </dependencies>
