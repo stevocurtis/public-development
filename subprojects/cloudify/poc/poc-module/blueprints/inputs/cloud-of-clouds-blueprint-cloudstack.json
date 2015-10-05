@@ -1,9 +1,0 @@
-{
-  "image_id": "b1c1191f-0742-4a2d-a097-190c37256785",
-  "image_size": "Small Instance",
-  "agent_user": "redcoc",
-  "cloudstack_zone": "zone1",
-  "cloudstack_app_network_service_offering": "b5207b2e-f1a1-425a-9682-5edd1795df0b",
-  "cloudstack_management_network_service_offering": "b5207b2e-f1a1-425a-9682-5edd1795df0b",
-  "management_network_resource_id": "defaultGuestNetwork"
-}

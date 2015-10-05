@@ -1,7 +1,0 @@
-plugins:
-  cloudify-poc:
-    executor: central_deployment_agent
-    source: cloudify-poc
-
-workflows:
-  my_workflow: cloudify-poc.myworkflow.tasks.simpleworkflow
