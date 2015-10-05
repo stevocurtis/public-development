@@ -1,6 +1,7 @@
 package com.fenixinfotech.simple.framework.playpen;
 
 import com.fenixinfotech.web.common.FrameworkServerBase;
+import com.fenixinfotech.web.common.JerseyResource;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.simple.SimpleContainerFactory;
 import org.glassfish.jersey.simple.SimpleServer;
