@@ -14,6 +14,8 @@ public class GrizzlyFrameworkServer extends FrameworkServerBase
 {
     private static final Logger logger = LoggerFactory.getLogger(GrizzlyFrameworkServer.class);
 
+    private HttpServer server;
+
     public void runServer() throws IOException
     {
         runServer(defaultPort);
@@ -26,10 +28,10 @@ public class GrizzlyFrameworkServer extends FrameworkServerBase
         final NetworkListener listener = new NetworkListener("Grizzly", "localhost", port);
         listener.setSecure(false);
 
-        HttpServer httpServer = new HttpServer();
-        httpServer.addListener(listener);
+        server = new HttpServer();
+        server.addListener(listener);
 
-        final ServerConfiguration serverConfiguration = httpServer.getServerConfiguration();
+        final ServerConfiguration serverConfiguration = server.getServerConfiguration();
         serverConfiguration.addHttpHandler(new HttpHandler()
                                            {
                                                public void service(Request requestm, Response response) throws Exception
@@ -43,8 +45,18 @@ public class GrizzlyFrameworkServer extends FrameworkServerBase
                                            }
         );
 
-        httpServer.start();
+        server.start();
 
         logger.info("bootstrap of grizzly framework server complete, running on http://localhost:{}", port);
+    }
+
+    public void stopServer() throws IOException
+    {
+        logger.info("stopping grizzly framework server");
+
+        if (null != server)
+            server.shutdownNow();
+
+        logger.info("stopping of grizzly framework server complete");
     }
 }

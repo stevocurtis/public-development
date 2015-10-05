@@ -1,16 +1,34 @@
 package com.fenixinfotech.grizzly.framework.playpen;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.io.IOException;
 
 import static org.junit.Assert.*;
 
 public class GrizzlyFrameworkServerTest
 {
+    GrizzlyFrameworkServer grizzlyFrameworkServer;
+
+    @Before
+    public void init() throws IOException
+    {
+        grizzlyFrameworkServer = new GrizzlyFrameworkServer();
+        grizzlyFrameworkServer.runServer();
+    }
+
+    @After
+    public void tidyup() throws IOException
+    {
+        grizzlyFrameworkServer.stopServer();
+    }
+
     @Test
     public void testRunServer() throws Exception
     {
-        new GrizzlyFrameworkServer().runServer();
-//        while (true)
-//        {}
+        // Add some verification
+//        while(true) {}
     }
 }
