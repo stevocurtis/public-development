@@ -6,6 +6,7 @@ pom.xml.next
 release.properties
 .idea
 *.iml
+.import
 yang-gen*
 META-INF
 MANIFEST.MF
