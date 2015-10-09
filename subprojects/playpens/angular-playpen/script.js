@@ -1,9 +1,9 @@
 	// create the module and name it angularPlaypenApp
 	var angularPlaypenApp = angular.module('angularPlaypenApp', ['ngRoute']);
-
+	
 	// configure our routes
 	angularPlaypenApp.config(function($routeProvider) {
-//var theRoute = $routeProvide;
+
 		$routeProvider
 		
 			// route for the home page
@@ -22,7 +22,8 @@
 			.when('/contact', {
 				templateUrl : 'pages/contact.html',
 				controller  : 'contactController'
-			});
+			})
+			;
 	});
 
 	// create the controller and inject Angular's $scope
