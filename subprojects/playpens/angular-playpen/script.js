@@ -27,15 +27,29 @@
 	});
 
 	// create the controller and inject Angular's $scope
-	angularPlaypenApp.controller('mainController', function($scope) {
+	angularPlaypenApp.controller('mainController', function($scope, TemplateContentService) {
 		// create a message to display in our view
-		$scope.message = 'Home page ...';
+		$scope.message = TemplateContentService.content("Home");
 	});
 
-	angularPlaypenApp.controller('aboutController', function($scope) {
-		$scope.message = 'About page ...';
+	angularPlaypenApp.controller('aboutController', function($scope, TemplateContentService) {
+		$scope.message = TemplateContentService.content("About");
 	});
 
-	angularPlaypenApp.controller('contactController', function($scope) {
-		$scope.message = 'Contact page ...';
+	angularPlaypenApp.controller('contactController', function($scope, TemplateContentService) {
+		$scope.message = TemplateContentService.content("Contact");
+	});
+	
+	// Create service
+	angularPlaypenApp.factory("TemplateContentService", function() {
+	
+		var data = {Home:    "Home page ...",
+					About:   "About page ...",
+					Contact: "Contact page ..."};
+		
+		return {
+			content: function(key) {
+				return data[key];
+			}
+		};
 	});
