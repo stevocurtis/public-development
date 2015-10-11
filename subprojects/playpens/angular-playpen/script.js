@@ -28,16 +28,17 @@
 
 	// create the controller and inject Angular's $scope
 	angularPlaypenApp.controller('mainController', function($scope, TemplateContentService) {
-		// create a message to display in our view
 		$scope.message = TemplateContentService.content("Home");
 	});
 
 	angularPlaypenApp.controller('aboutController', function($scope, TemplateContentService) {
 		$scope.message = TemplateContentService.content("About");
+
 	});
 
 	angularPlaypenApp.controller('contactController', function($scope, TemplateContentService) {
 		$scope.message = TemplateContentService.content("Contact");
+		$scope.theRoute = "bollox";
 	});
 	
 	// Create service
