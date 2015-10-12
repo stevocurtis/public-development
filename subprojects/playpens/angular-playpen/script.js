@@ -8,19 +8,19 @@
 		
 			// route for the home page
 			.when('/', {
-				templateUrl : 'pages/home.html',
+				templateUrl : 'partials/home.html',
 				controller  : 'mainController'
 			})
 
 			// route for the about page
 			.when('/about', {
-				templateUrl : 'pages/about.html',
+				templateUrl : 'partials/about.html',
 				controller  : 'aboutController'
 			})
 
 			// route for the contact page
 			.when('/contact', {
-				templateUrl : 'pages/contact.html',
+				templateUrl : 'partials/contact.html',
 				controller  : 'contactController'
 			})
 			;
@@ -38,7 +38,6 @@
 
 	angularPlaypenApp.controller('contactController', function($scope, TemplateContentService) {
 		$scope.message = TemplateContentService.content("Contact");
-		$scope.theRoute = "bollox";
 	});
 	
 	// Create service
