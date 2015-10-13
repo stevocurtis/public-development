@@ -1,5 +1,5 @@
 	// create the module and name it angularPlaypenApp
-	var angularPlaypenApp = angular.module('angularPlaypenApp', ['ngRoute']);
+	var angularPlaypenApp = angular.module('angularPlaypenApp', ['ngRoute', 'angularPlaypenDirectivesModule']);
 	
 	// configure our routes
 	angularPlaypenApp.config(function($routeProvider) {
