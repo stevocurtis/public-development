@@ -33,7 +33,7 @@
 
 	angularPlaypenApp.controller('aboutController', function($scope, TemplateContentService) {
 		$scope.message = TemplateContentService.content("About");
-
+		$scope.someParam = 'fuck';
 	});
 
 	angularPlaypenApp.controller('contactController', function($scope, TemplateContentService) {
