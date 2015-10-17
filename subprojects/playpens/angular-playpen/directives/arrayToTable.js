@@ -2,16 +2,22 @@
 var angularPlaypenDirectivesModule = angular.module('angularPlaypenDirectivesModule', []);
 
 angularPlaypenDirectivesModule.directive('arrayToTable', function() {
-//	return 	{
-//		restrict: 'EA',
-//		scope: '=someParam',
-//		template: '<p>i am a directive with {{someParam}} parameter</p>'
-//	};
-	scope: {'=someParam'},
-	link: function (scope, iElm, iAttrs) {
+	return 	{
 		restrict: 'EA',
-		scope: '=someParam',
+		link: link,
 		template: '<p>i am a directive with {{someParam}} parameter</p>'
 	};
+
+	function link( scope, element, attributes ) {
+		
+		console.log("arrayToTable link function called");
+		
+		if (typeof attributes.someparam !== undefined) { 
+			scope.someParam = attributes.someparam;
+		}
+
+	}
+
 }
+
 );
