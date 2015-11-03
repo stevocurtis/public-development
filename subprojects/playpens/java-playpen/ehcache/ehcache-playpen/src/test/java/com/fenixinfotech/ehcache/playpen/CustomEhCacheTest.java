@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class CustomEhCacheTest
 {
@@ -15,6 +16,7 @@ public class CustomEhCacheTest
     @Test
     public void testCache()
     {
+        assertTrue(false);
         String testCacheName = "testCache";
         int maxCacheEntries = 10;
 
