@@ -16,7 +16,6 @@ public class CustomEhCacheTest
     @Test
     public void testCache()
     {
-        assertTrue(false);
         String testCacheName = "testCache";
         int maxCacheEntries = 10;
 
