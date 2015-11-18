@@ -17,6 +17,7 @@
         <module>csv/jcsv-playpen</module>
         <module>csv/opencsv-playpen</module>
         <module>ehcache/ehcache-playpen</module>
+        <module>excel/poi-playpen</module>
         <module>ftl/ftl-playpen</module>
         <module>jmx/jmx-playpen</module>
         <module>jpa/jpa-common</module>
