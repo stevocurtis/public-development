@@ -21,7 +21,6 @@ public class POIExcelGeneratorTest
         String fileName = "Output_" + timeStamp + ".xlsx";
         File outputFile = new File(testFolder, fileName);
         new POIExcelGenerator().writeXSSFSpreadSheet(outputFile, numRows, numColumns);
-//        new POIExcelGenerator().writeXSSFSpreadSheet(outputFile, 1, 5);
         assertNotNull(outputFile);
         assertTrue(outputFile.exists());
         assertTrue(outputFile.isFile());
