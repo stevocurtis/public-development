@@ -1,8 +1,10 @@
 package com.fenixinfotech.poi.playpen;
 
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,11 +18,22 @@ public class POIExcelGenerator
 {
     public static final Logger logger = LoggerFactory.getLogger(POIExcelGenerator.class);
     public static final String defaultSheetName = "Sheet1";
-    public static final int megabytes = 1024 * 1024;
+
+    public void writeHSSFSpreadSheet(File location, int numRows, int numColumns) throws IOException
+    {
+        writeSpreadSheet(new HSSFWorkbook(), location, numRows, numColumns);
+    }
 
     public void writeXSSFSpreadSheet(File location, int numRows, int numColumns) throws IOException
     {
-        logger.info("running writeXSSFSpreadSheet with location {} numRows {} numColumns {}", location, numRows, numColumns);
+        writeSpreadSheet(new XSSFWorkbook(), location, numRows, numColumns);
+    }
+
+    private void writeSpreadSheet(Workbook workbook, File location, int numRows, int numColumns) throws IOException
+    {
+        String workbookType = (workbook == null) ? "null" : workbook.getClass().getSimpleName();
+
+        logger.debug("running writeSpreadSheet with workbook {} location {} numRows {} numColumns {}", workbookType, location, numRows, numColumns);
 
         long startTimestamp = new Date().getTime();
 
@@ -32,39 +45,39 @@ public class POIExcelGenerator
                 logger.info("creating folder structure {}", location.getParentFile());
                 location.getParentFile().mkdirs();
             }
-            else
-            {
-                logger.info("not creating parent folders");
-            }
 
-            logger.info("creating workbook and sheet");
-            XSSFWorkbook wb = new XSSFWorkbook();
-            XSSFSheet sheet = wb.createSheet(defaultSheetName);
+            logger.debug("creating workbook and sheet");
+            Sheet sheet = workbook.createSheet(defaultSheetName);
 
             for (int rowCount=1; rowCount <= numRows; rowCount++)
             {
-                logger.info("creating row {}", rowCount);
-                XSSFRow xssfRow = sheet.createRow(rowCount - 1);
+                logger.debug("creating row {}", rowCount);
+                Row row = sheet.createRow(rowCount - 1);
 
                 for (int colCount=1; colCount<=numColumns; colCount++)
                 {
-                    logger.info("creating cell at row {} and column {}", rowCount, colCount);
-                    XSSFCell xssfCell = xssfRow.createCell(colCount - 1);
-                    xssfCell.setCellValue("Data" + colCount + "." + rowCount);
+                    logger.debug("creating cell at row {} and column {}", rowCount, colCount);
+                    Cell cell = row.createCell(colCount - 1);
+                    cell.setCellValue("Data" + colCount + "." + rowCount);
                 }
             }
 
-            logger.info("writing output to {}", location);
+            logger.debug("writing output to {}", location);
             FileOutputStream fileOutputStream = new FileOutputStream(location);
 
+
             // Write output file
-            wb.write(fileOutputStream);
+            long filewriteStartTimestamp = new Date().getTime();
+
+            workbook.write(fileOutputStream);
             fileOutputStream.flush();
             fileOutputStream.close();
 
-            long elapsedTime = new Date().getTime() - startTimestamp;
+            long finishTimestamp      = new Date().getTime();
+            long filewriteElapsedTime = finishTimestamp - filewriteStartTimestamp;
+            long elapsedTime          = finishTimestamp - startTimestamp;
 
-            logger.info("finished {} rows and {} columns in {} millis filesize {} Mb", numRows, numColumns, elapsedTime, location.length()/megabytes);
+            logger.info("finished workbook {} {} rows and {} columns in {} millis filesize file write time {} millis file size {} bytes", workbookType, numRows, numColumns, elapsedTime, filewriteElapsedTime, location.length());
         }
     }
 }
