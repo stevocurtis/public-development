@@ -22,6 +22,7 @@
         <module>jmx/jmx-playpen</module>
         <module>jpa/jpa-common</module>
         <module>jpa/jpa-hibernate-playpen</module>
+        <module>spring/spring-playpen</module>
         <module>thread/thread-playpen</module>
         <module>web/web-common</module>
         <module>web/grizzly-framework-playpen</module>
