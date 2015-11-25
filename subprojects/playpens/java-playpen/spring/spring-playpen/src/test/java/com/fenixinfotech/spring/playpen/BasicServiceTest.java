@@ -3,6 +3,7 @@ package com.fenixinfotech.spring.playpen;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
@@ -18,27 +19,39 @@ public class BasicServiceTest
 {
     @Autowired
     BasicService basicService;
+    @Autowired
+    ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
-    private static final int threadPoolSize     = 3;
     private static final int numberOfExecutions = 10;
 
     @Test
     public void testBasicService()
     {
         assertNotNull(basicService);
-
-        // Create a thread pool to execute the spring service
-        ThreadPoolExecutor threadPoolExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(threadPoolSize);
+        assertNotNull(threadPoolTaskExecutor);
 
         for (int i=1; i<=numberOfExecutions; i++)
         {
-            threadPoolExecutor.execute(new Runnable()
+            threadPoolTaskExecutor.execute(basicService);
+        }
+
+        for (;;)
+        {
+            int count = threadPoolTaskExecutor.getActiveCount();
+            try
             {
-                public void run()
-                {
-                    basicService.execute();
-                }
-            });
+                Thread.sleep(100);
+            }
+            catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+
+            if (count == 0)
+            {
+                threadPoolTaskExecutor.shutdown();
+                break;
+            }
         }
     }
 }
