@@ -19,6 +19,7 @@
         <module>ehcache/ehcache-playpen</module>
         <module>excel/poi-playpen</module>
         <module>ftl/ftl-playpen</module>
+        <module>ioc/dagger-playpen</module>
         <module>jmx/jmx-playpen</module>
         <module>jpa/jpa-common</module>
         <module>jpa/jpa-hibernate-playpen</module>
