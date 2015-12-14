@@ -29,6 +29,7 @@ public class GrizzlyFrameworkServerTest
     public void testRunServer() throws Exception
     {
         // Add some verification
-//        while(true) {}
+//        Thread.sleep(3000);
+        while(true) {}
     }
 }
