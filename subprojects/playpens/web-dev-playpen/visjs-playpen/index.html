@@ -2,30 +2,102 @@
 <html>
 	<head>
 		<title>visjs playpen</title>
-		<script src="http://visjs.org/dist/vis.js"></script>
-		<link href="http://visjs.org/dist/vis.css" rel="stylesheet" type="text/css" />
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.11.0/vis.min.js"></script>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.11.0/vis.min.css" rel="stylesheet" type="text/css" /> -->
+		<script src="resources/visjs/4.11.0/vis.min.js"></script>
+		<link href="resources/visjs/4.11.0/vis.min.css" rel="stylesheet" type="text/css" />
 	</head>
 
 	<body>
 		<h1>put stuff here</h1>
-		<div id="graph"></div>
+		<div id="network" style="width: 90%; height: 450px;"></div>
 		<script type="text/javascript">
 			var nodes = [
-			{id: 1, label: 'a'},
-			{id: 2, label: 'b'},
-			{id: 3, label: 'c'},
+				{id: '1', label: 'a node\nsecond line', group: 'group1'},
+				{id: '2', label: 'b node', group: 'group1'},
+				{id: '3', label: 'c node', group: 'group1'},
+				{id: '4', label: 'd node', group: 'group1'},
+				{id: '5', label: 'e node', group: 'group2'},
+				{id: '6', label: 'f node', group: 'group2'},
+				{id: '7', label: 'g node', group: 'group2'},
+				{id: '8', label: 'h node', group: 'group2'},
+				{id: '9', label: 'i node', group: 'group1'},
+				{id: '10', label: 'j node', group: 'group2'},
+				{id: '11', label: 'k node', group: 'group3'},
+				{id: '12', label: 'l node', group: 'group3'},
 			];
 			var edges = [
-			{from: 1, to: 2},
-			{from: 1, to: 3},
-			{from: 2, to: 3},
+				{from: '1', to: '2'},
+				{from: '1', to: '3'},
+				{from: '1', to: '4'},
+				{from: '4', to: '9'},
+				{from: '5', to: '6'},
+				{from: '5', to: '7'},
+				{from: '5', to: '8'},
+				{from: '8', to: '10'},
+				{from: '11', to: '12'},
 			];
-			var container = document.getElementById('graph');
+			var container = document.getElementById('network');
 			var data = {
-			nodes: nodes,
-			edges: edges,
+				nodes: nodes,
+				edges: edges,
 			};
-			var graph = new vis.Graph(container, data, {});
+			var network = new vis.Network(container, data, {});
+			
+			var options = {
+				layout:{
+				hierarchical: true,
+				sortMethod: 'directed',
+				},
+				physics:{
+					enabled: true,
+					avoidOverlap: 1,
+					barnesHut: {
+						gravitationalConstant: -2000,
+						centralGravity: 0.3,
+						springLength: 95,
+						springConstant: 0.04,
+						damping: 0.09,
+						avoidOverlap: 0
+					},
+					   forceAtlas2Based: {
+      gravitationalConstant: -50,
+      centralGravity: 0.01,
+      springConstant: 0.08,
+      springLength: 100,
+      damping: 0.4,
+      avoidOverlap: 0
+    },
+        repulsion: {
+      centralGravity: 0.2,
+      springConstant: 0.05,
+      damping: 0.09
+    },
+        hierarchicalRepulsion: {
+      centralGravity: 0.0,
+      springLength: 100,
+      springConstant: 0.01,
+      nodeDistance: 120,
+      damping: 0.09,
+      avoidOverlap: 1
+    },
+        maxVelocity: 50,
+    minVelocity: 0.1,
+    solver: 'barnesHut',
+    stabilization: {
+      enabled: true,
+      iterations: 1000,
+      updateInterval: 100,
+      onlyDynamicEdges: false,
+      fit: true
+    },
+        timestep: 0.5,
+    adaptiveTimestep: true,
+    randomSeed: 2
+				}
+			};
+			
+			network.setOptions(options);
 		</script>
 	</body>
 </html>
