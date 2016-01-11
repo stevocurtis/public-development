@@ -114,8 +114,7 @@ public class GrizzlyFrameworkServer extends FrameworkServerBase
             logger.info("kernel thread pool queue size {}", ((GrizzlyExecutorService)listener.getTransport().getKernelThreadPool()).getConfiguration().getQueue().size());
 
             logger.info("worker thread pool queue {}/{} threads", listener.getTransport().getWorkerThreadPoolConfig().getCorePoolSize(),
-                    listener.getTransport().getWorkerThreadPoolConfig().getMaxPoolSize(),
-                    listener.getTransport().getWorkerThreadPoolConfig().get);
+                    listener.getTransport().getWorkerThreadPoolConfig().getMaxPoolSize());
             logger.info("worker thread pool queue {}", listener.getTransport().getWorkerThreadPoolConfig().getQueue());
             logger.info("worker thread pool queue size {}", ((GrizzlyExecutorService)listener.getTransport().getWorkerThreadPool()).getConfiguration().getQueue().size());
         }
