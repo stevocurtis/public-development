@@ -30,6 +30,6 @@ public class GrizzlyFrameworkServerTest
     {
         // Add some verification
 //        Thread.sleep(3000);
-        while(true) {}
+//        while(true) {}
     }
 }
