@@ -13,6 +13,7 @@
     <modules>
         <module>aop/aspectj-playpen</module>
         <module>csv/csv-common</module>
+        <module>csv/commons-csv</module>
         <module>csv/csveed-playpen</module>
         <module>csv/jcsv-playpen</module>
         <module>csv/opencsv-playpen</module>
