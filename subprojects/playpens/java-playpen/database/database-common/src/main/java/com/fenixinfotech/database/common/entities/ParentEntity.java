@@ -1,4 +1,4 @@
-package com.fenixinfotech.jpa.common.entities;
+package com.fenixinfotech.database.common.entities;
 
 import javax.persistence.*;
 

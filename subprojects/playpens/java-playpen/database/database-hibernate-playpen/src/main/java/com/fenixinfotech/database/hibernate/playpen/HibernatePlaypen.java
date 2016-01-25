@@ -1,6 +1,6 @@
-package com.fenixinfotech.jpa.hibernate.playpen;
+package com.fenixinfotech.database.hibernate.playpen;
 
-import com.fenixinfotech.jpa.common.entities.ParentEntity;
+import com.fenixinfotech.database.common.entities.ParentEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

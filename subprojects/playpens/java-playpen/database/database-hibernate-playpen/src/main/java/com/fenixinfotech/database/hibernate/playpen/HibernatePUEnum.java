@@ -1,4 +1,4 @@
-package com.fenixinfotech.jpa.hibernate.playpen;
+package com.fenixinfotech.database.hibernate.playpen;
 
 public enum HibernatePUEnum
 {
