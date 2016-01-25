@@ -9,10 +9,10 @@
         <version>0.1-SNAPSHOT</version>
         <relativePath>../..</relativePath>
     </parent>
-    <artifactId>jpa-hibernate-playpen</artifactId>
+    <artifactId>database-hibernate-playpen</artifactId>
     <packaging>jar</packaging>
 
-    <name>JPA Hibernate Playpen</name>
+    <name>Database Hibernate Playpen</name>
 
     <properties>
         <hibernate-version>4.3.8.Final</hibernate-version>
@@ -21,7 +21,7 @@
     <dependencies>
         <dependency>
             <groupId>com.fenixinfotech</groupId>
-            <artifactId>jpa-common</artifactId>
+            <artifactId>database-common</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>

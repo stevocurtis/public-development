@@ -9,10 +9,10 @@
         <version>0.1-SNAPSHOT</version>
         <relativePath>../..</relativePath>
     </parent>
-    <artifactId>jpa-common</artifactId>
+    <artifactId>database-common</artifactId>
     <packaging>jar</packaging>
 
-    <name>JPA Common</name>
+    <name>Database Common</name>
 
     <dependencies>
         <dependency>

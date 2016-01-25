@@ -22,8 +22,8 @@
         <module>ftl/ftl-playpen</module>
         <module>ioc/dagger-playpen</module>
         <module>jmx/jmx-playpen</module>
-        <module>jpa/jpa-common</module>
-        <module>jpa/jpa-hibernate-playpen</module>
+        <module>database/database-common</module>
+        <module>database/database-hibernate-playpen</module>
         <module>spring/spring-playpen</module>
         <module>thread/thread-playpen</module>
         <module>web/web-common</module>
