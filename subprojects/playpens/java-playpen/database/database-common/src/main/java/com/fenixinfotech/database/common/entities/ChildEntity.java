@@ -3,7 +3,7 @@ package com.fenixinfotech.database.common.entities;
 import javax.persistence.*;
 
 @Entity
-public class ParentEntity
+public class ChildEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,14 +11,19 @@ public class ParentEntity
 
     private String name;
 
-    public ParentEntity() {
+    @ManyToOne
+    @JoinColumn(name = "parentId")
+    private ParentEntity parentEntity;
+
+    public ChildEntity() {
     }
 
     @Override
     public String toString() {
-        return "ParentEntity{" +
+        return "ChildEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", parentEntity=" + parentEntity +
                 '}';
     }
 
@@ -34,4 +39,11 @@ public class ParentEntity
         this.name = name;
     }
 
+    public ParentEntity getParentEntity() {
+        return parentEntity;
+    }
+
+    public void setParentEntity(ParentEntity parentEntity) {
+        this.parentEntity = parentEntity;
+    }
 }
