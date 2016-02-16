@@ -55,6 +55,7 @@
     <properties>
         <hibernate-version>4.3.8.Final</hibernate-version>
         <spring.version>4.2.4.RELEASE</spring.version>
+        <spring-data-jpa.version>1.9.2.RELEASE</spring-data-jpa.version>
     </properties>
 
     <dependencies>
