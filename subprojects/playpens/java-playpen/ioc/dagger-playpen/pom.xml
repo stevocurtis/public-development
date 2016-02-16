@@ -16,7 +16,7 @@
 
     <properties>
         <dagger.version>2.0.2</dagger.version>
-            </properties>
+    </properties>
 
     <dependencies>
         <dependency>

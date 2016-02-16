@@ -14,10 +14,6 @@
 
     <name>Spring Playpen</name>
 
-    <properties>
-        <spring.version>4.2.4.RELEASE</spring.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -36,6 +32,12 @@
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fenixinfotech</groupId>
+            <artifactId>database-common</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
 
     </dependencies>
