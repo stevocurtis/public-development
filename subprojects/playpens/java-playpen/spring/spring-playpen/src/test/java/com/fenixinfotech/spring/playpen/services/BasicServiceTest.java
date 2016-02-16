@@ -1,5 +1,6 @@
-package com.fenixinfotech.spring.playpen;
+package com.fenixinfotech.spring.playpen.services;
 
+import com.fenixinfotech.spring.playpen.TestAppConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
