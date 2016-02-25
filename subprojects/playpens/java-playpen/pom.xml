@@ -20,6 +20,7 @@
         <module>ehcache/ehcache-playpen</module>
         <module>excel/poi-playpen</module>
         <module>ftl/ftl-playpen</module>
+        <module>generics/generics-playpen</module>
         <module>ioc/dagger-playpen</module>
         <module>jmx/jmx-playpen</module>
         <module>database/database-common</module>
