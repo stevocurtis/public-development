@@ -14,6 +14,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
                excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE,
                                                       classes = BasicService.class))
 @EnableJpaRepositories
-@EntityScan("com.fenixinfotech.spring.playpen.data")
+@EntityScan("com.fenixinfotech.database.common.entities")
 public class SpringDataTestAppConfig
 {}
