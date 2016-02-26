@@ -1,20 +1,15 @@
-package com.fenixinfotech.spring.playpen;
+package com.fenixinfotech.spring.playpen.boot;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.orm.jpa.EntityScan;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
-@SpringBootApplication
-@EnableJpaRepositories
-@EntityScan("com.fenixinfotech")
+@EnableAutoConfiguration
+@ComponentScan("com.fenixinfotech.spring.playpen.web")
 public class App
 {
     public static Logger logger = LoggerFactory.getLogger(App.class);
