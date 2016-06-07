@@ -20,7 +20,8 @@ public class JerseyGrizzlyFrameworkServerTest
     @After
     public void tidyup() throws IOException
     {
-        grizzlyFrameworkServer.stopServer();
+        if (grizzlyFrameworkServer != null)
+            grizzlyFrameworkServer.stopServer();
     }
 
     @Test
