@@ -11,12 +11,13 @@ import static org.junit.Assert.*;
 public class GrizzlyFrameworkServerTest
 {
     GrizzlyFrameworkServer grizzlyFrameworkServer;
+    int port = 9876;
 
     @Before
     public void init() throws IOException
     {
         grizzlyFrameworkServer = new GrizzlyFrameworkServer();
-        grizzlyFrameworkServer.runServer();
+        grizzlyFrameworkServer.runServer(port);
     }
 
     @After
