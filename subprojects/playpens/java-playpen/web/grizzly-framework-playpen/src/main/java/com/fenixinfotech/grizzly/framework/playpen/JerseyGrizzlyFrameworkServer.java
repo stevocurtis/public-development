@@ -6,6 +6,10 @@ import org.glassfish.grizzly.http.server.*;
 import org.glassfish.grizzly.nio.NIOTransport;
 import org.glassfish.grizzly.nio.transport.TCPNIOTransport;
 import org.glassfish.grizzly.nio.transport.TCPNIOTransportBuilder;
+import org.glassfish.grizzly.spdy.PushResource;
+import org.glassfish.grizzly.spdy.SpdyAddOn;
+import org.glassfish.grizzly.spdy.SpdyMode;
+import org.glassfish.grizzly.spdy.SpdyStream;
 import org.glassfish.grizzly.strategies.WorkerThreadIOStrategy;
 import org.glassfish.grizzly.threadpool.GrizzlyExecutorService;
 import org.glassfish.grizzly.threadpool.ThreadPoolConfig;
@@ -43,7 +47,7 @@ public class JerseyGrizzlyFrameworkServer extends FrameworkServerBase
         server = GrizzlyHttpServerFactory.createHttpServer(uri, resourceConfig);
 
         listener = server.getListeners().iterator().next();
-        listener.setSecure(false);
+        listener.setSecure(true);
 
         NIOTransport nioTransport = TCPNIOTransportBuilder.newInstance()
                 .setReuseAddress(true)
@@ -57,6 +61,9 @@ public class JerseyGrizzlyFrameworkServer extends FrameworkServerBase
                 .build();
         listener.setTransport((TCPNIOTransport)nioTransport);
 
+        SpdyAddOn spdyAddOn = new SpdyAddOn(SpdyMode.PLAIN);
+        listener.registerAddOn(spdyAddOn);
+
         server.addListener(listener);
 
         final ServerConfiguration serverConfiguration = server.getServerConfiguration();
@@ -65,12 +72,21 @@ public class JerseyGrizzlyFrameworkServer extends FrameworkServerBase
                                                public void service(Request request, Response response) throws Exception
                                                {
                                                    long startTime = new Date().getTime();
+//                                                   PushResource pushResource = PushResource.builder()
+                                                   // Get SPDY stream if it exists
+                                                   final SpdyStream spdyStream = (SpdyStream) request.getAttribute(SpdyStream.SPDY_STREAM_ATTRIBUTE);
+                                                   // if spdy stream is null it is not a SPDY based request
+                                                   if (spdyStream != null)
+                                                   {
+                                                       // push the content
+                                                        logger.info("found a SPDY stream");
+                                                   }
                                                    final SimpleDateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.UK);
                                                    final String date = format.format(new Date(System.currentTimeMillis()));
                                                    response.setContentType("text/plain");
                                                    response.setContentLength(date.length());
                                                    response.getWriter().write(date);
-                                                   dumpStats();
+//                                                   dumpStats();
                                                    logger.info("processed request in {} ms", new Date().getTime() - startTime);
                                                }
                                            }
