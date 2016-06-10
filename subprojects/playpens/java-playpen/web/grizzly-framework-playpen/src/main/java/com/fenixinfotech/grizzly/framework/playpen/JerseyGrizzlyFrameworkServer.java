@@ -50,6 +50,7 @@ public class JerseyGrizzlyFrameworkServer extends FrameworkServerBase
 
         listener = server.getListeners().iterator().next();
 
+        listener.setSecure(true);
         NIOTransport nioTransport = TCPNIOTransportBuilder.newInstance()
                 .setReuseAddress(true)
                 .setIOStrategy(WorkerThreadIOStrategy.getInstance())
@@ -102,7 +103,7 @@ public class JerseyGrizzlyFrameworkServer extends FrameworkServerBase
 
         SSLContextConfigurator sslContextConfigurator = new SSLContextConfigurator();
         ClassLoader classLoader = getClass().getClassLoader();
-        sslContextConfigurator.setKeyStoreFile(new File("E:/Users/700608667/Development/GitHub/public-development/subprojects/playpens/java-playpen/web/grizzly-framework-playpen/src/main/resources/keystore.jks").toURI().toURL().getFile());
+        sslContextConfigurator.setKeyStoreFile(classLoader.getResource("keystore.jks").getFile().toString());
         sslContextConfigurator.setKeyStorePass("changeit");
 
         sslContextConfigurator.validateConfiguration(true);
