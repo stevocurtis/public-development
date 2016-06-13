@@ -1,14 +1,13 @@
 package com.fenixinfotech.grizzly.framework.playpen;
 
 import com.fenixinfotech.web.common.FrameworkServerBase;
-import com.fenixinfotech.web.common.JerseyResource;
+import org.apache.commons.io.IOUtils;
 import org.glassfish.grizzly.http.server.*;
 import org.glassfish.grizzly.nio.NIOTransport;
 import org.glassfish.grizzly.nio.transport.TCPNIOTransport;
 import org.glassfish.grizzly.nio.transport.TCPNIOTransportBuilder;
 import org.glassfish.grizzly.spdy.SpdyAddOn;
 import org.glassfish.grizzly.spdy.SpdyMode;
-import org.glassfish.grizzly.spdy.SpdyStream;
 import org.glassfish.grizzly.ssl.SSLContextConfigurator;
 import org.glassfish.grizzly.ssl.SSLEngineConfigurator;
 import org.glassfish.grizzly.strategies.WorkerThreadIOStrategy;
@@ -19,13 +18,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.core.UriBuilder;
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 public class JerseyGrizzlyFrameworkServer extends FrameworkServerBase
 {
@@ -44,7 +38,7 @@ public class JerseyGrizzlyFrameworkServer extends FrameworkServerBase
     {
         logger.info("starting grizzly framework server on port {}", port);
 
-        ResourceConfig resourceConfig = new ResourceConfig(JerseyResource.class);
+        ResourceConfig resourceConfig = new ResourceConfig(GrizzlyJerseyResource.class);
         uri = UriBuilder.fromUri("https://localhost/").port(port).build();
         server = GrizzlyHttpServerFactory.createHttpServer(uri, resourceConfig, true, createSSLContextConfigurator());
 
@@ -62,48 +56,17 @@ public class JerseyGrizzlyFrameworkServer extends FrameworkServerBase
         SpdyAddOn spdyAddOn = new SpdyAddOn(SpdyMode.NPN);
         listener.registerAddOn(spdyAddOn);
 
-        final ServerConfiguration serverConfiguration = server.getServerConfiguration();
-        serverConfiguration.addHttpHandler(new HttpHandler()
-                                           {
-                                               public void service(Request request, Response response) throws Exception
-                                               {
-                                                   long startTime = new Date().getTime();
-
-                                                   // Put a short sleep in here so can see if requests queue up from browser
-                                                   Thread.currentThread().sleep(500);
-
-                                                   // Get SPDY stream if it exists
-                                                   final SpdyStream spdyStream = (SpdyStream) request.getAttribute(SpdyStream.SPDY_STREAM_ATTRIBUTE);
-                                                   // if spdy stream is null it is not a SPDY based request
-                                                   if (spdyStream != null)
-                                                   {
-                                                       logger.info("found a SPDY stream");
-                                                   }
-                                                   else
-                                                   {
-                                                       logger.info("no SPDY stream available");
-                                                   }
-                                                   final SimpleDateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.UK);
-                                                   final String date = format.format(new Date(System.currentTimeMillis()));
-                                                   response.setContentType("text/plain");
-                                                   response.setContentLength(date.length());
-                                                   response.getWriter().write(date);
-                                                   logger.info("processed request in {} ms", new Date().getTime() - startTime);
-                                               }
-                                           }
-        );
-
         server.start();
 
         logger.info("bootstrap of grizzly framework server complete, running on {}", uri);
     }
 
-    protected SSLEngineConfigurator createSSLContextConfigurator() throws MalformedURLException
+    protected SSLEngineConfigurator createSSLContextConfigurator() throws IOException
     {
-
         SSLContextConfigurator sslContextConfigurator = new SSLContextConfigurator();
         ClassLoader classLoader = getClass().getClassLoader();
-        sslContextConfigurator.setKeyStoreFile(classLoader.getResource("keystore.jks").getFile().toString());
+        byte[] content = IOUtils.toByteArray(classLoader.getResourceAsStream("keystore.jks"));
+        sslContextConfigurator.setKeyStoreBytes(content);
         sslContextConfigurator.setKeyStorePass("changeit");
 
         sslContextConfigurator.validateConfiguration(true);
