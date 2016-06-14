@@ -2,6 +2,8 @@ package com.fenixinfotech.grizzly.framework.playpen;
 
 import com.fenixinfotech.web.common.FrameworkServerBase;
 import org.apache.commons.io.IOUtils;
+import org.glassfish.grizzly.filterchain.FilterChainBuilder;
+import org.glassfish.grizzly.filterchain.TransportFilter;
 import org.glassfish.grizzly.http.server.*;
 import org.glassfish.grizzly.nio.NIOTransport;
 import org.glassfish.grizzly.nio.transport.TCPNIOTransport;
@@ -39,6 +41,9 @@ public class JerseyGrizzlyFrameworkServer extends FrameworkServerBase
         logger.info("starting grizzly framework server on port {}", port);
 
         ResourceConfig resourceConfig = new ResourceConfig(GrizzlyJerseyResource.class);
+        resourceConfig.register(LoggingBeforeFilter.class);
+        resourceConfig.register(LoggingAfterFilter.class);
+
         uri = UriBuilder.fromUri("https://localhost/").port(port).build();
         server = GrizzlyHttpServerFactory.createHttpServer(uri, resourceConfig, true, createSSLContextConfigurator());
 
@@ -51,6 +56,7 @@ public class JerseyGrizzlyFrameworkServer extends FrameworkServerBase
                 .setSelectorThreadPoolConfig(ThreadPoolConfig.defaultConfig().setCorePoolSize(2).setMaxPoolSize(4))
                 .setWorkerThreadPoolConfig(ThreadPoolConfig.defaultConfig().setCorePoolSize(3).setMaxPoolSize(20))
                 .build();
+
         listener.setTransport((TCPNIOTransport)nioTransport);
 
         SpdyAddOn spdyAddOn = new SpdyAddOn(SpdyMode.NPN);
