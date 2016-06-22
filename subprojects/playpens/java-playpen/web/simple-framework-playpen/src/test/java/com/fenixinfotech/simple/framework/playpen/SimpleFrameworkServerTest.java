@@ -24,11 +24,13 @@ public class SimpleFrameworkServerTest
     private static final Logger logger = LoggerFactory.getLogger(SimpleFrameworkServerTest.class);
     SimpleFrameworkServer simpleFrameworkServer;
 
+    private int portNumber = 6789;
+
     @Before
     public void init() throws IOException
     {
         simpleFrameworkServer = new SimpleFrameworkServer();
-        simpleFrameworkServer.runServer();
+        simpleFrameworkServer.runServer(portNumber);
     }
 
 
@@ -45,7 +47,7 @@ public class SimpleFrameworkServerTest
 
         logger.info("testing http GET");
 
-        HttpUriRequest getRequest = new HttpGet( "http://localhost:" + SimpleFrameworkServer.defaultPort);
+        HttpUriRequest getRequest = new HttpGet( "http://localhost:" + portNumber);
         HttpResponse getResponse = HttpClientBuilder.create().build().execute(getRequest);
 
         assertEquals(HttpStatus.SC_OK,                          getResponse.getStatusLine().getStatusCode());
@@ -53,7 +55,7 @@ public class SimpleFrameworkServerTest
 
         logger.info("testing http POST");
 
-        HttpUriRequest postRequest = new HttpPost( "http://localhost:" + SimpleFrameworkServer.defaultPort);
+        HttpUriRequest postRequest = new HttpPost( "http://localhost:" + portNumber);
         HttpResponse postResponse = HttpClientBuilder.create().build().execute(postRequest);
 
         assertEquals(HttpStatus.SC_OK,                          postResponse.getStatusLine().getStatusCode());

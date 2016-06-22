@@ -23,7 +23,7 @@ public class JerseySimpleFrameworkServerTest
     private static final Logger logger = LoggerFactory.getLogger(JerseySimpleFrameworkServerTest.class);
     JerseySimpleFrameworkServer simpleFrameworkServer;
 
-    private int portNumber = 4321; // Set different from default since on CI server can take a while to shut down between tests
+    private int portNumber = 9876;
 
     @Before
     public void init() throws IOException

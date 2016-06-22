@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class GrizzlyFrameworkServerTest
 {
     GrizzlyFrameworkServer grizzlyFrameworkServer;
-    int port = 9876;
+    int port = 4321;
 
     @Before
     public void init() throws IOException
