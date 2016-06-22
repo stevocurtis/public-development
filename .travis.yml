@@ -1,5 +1,5 @@
 language: java
-script: mvn -T 1C clean install test -DargLine-"-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=4444 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false"
+script: mvn clean install test -DargLine-"-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=4444 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false"
 before_install:
   - cd subprojects/playpens/java-playpen
   - mvn clean
