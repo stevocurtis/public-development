@@ -4,4 +4,5 @@ before_install:
   - cd subprojects/playpens/java-playpen
   - mvn clean
 jdk:
-  - oraclejdk8
+#  - oraclejdk8
+  - openjdk7
