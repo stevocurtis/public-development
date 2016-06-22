@@ -5,4 +5,4 @@ before_install:
   - mvn clean
 jdk:
 #  - oraclejdk8
-  - openjdk7
+  - openjdk8
