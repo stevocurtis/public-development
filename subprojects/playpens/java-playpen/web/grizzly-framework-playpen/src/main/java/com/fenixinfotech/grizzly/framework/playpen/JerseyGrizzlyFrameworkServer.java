@@ -45,7 +45,7 @@ public class JerseyGrizzlyFrameworkServer extends FrameworkServerBase
         resourceConfig.register(LoggingAfterFilter.class);
 
         uri = UriBuilder.fromUri("https://localhost/").port(port).build();
-        server = GrizzlyHttpServerFactory.createHttpServer(uri, resourceConfig, true, createSSLContextConfigurator());
+        server = GrizzlyHttpServerFactory.createHttpServer(uri, resourceConfig, true, createSSLContextConfigurator(), false);
 
         listener = server.getListeners().iterator().next();
 
