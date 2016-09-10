@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="SampleRoot">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Samples"/>
+            </xs:sequence>
+            <xs:attribute name="id" use="required" type="xs:NCName"/>
+            <xs:attribute name="description" use="optional" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Samples">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="Sample"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Sample" type="xs:NCName"/>
+</xs:schema>

@@ -31,6 +31,7 @@
         <module>web/grizzly-framework-playpen</module>
         <module>web/simple-framework-playpen</module>
         <module>xml/exist-db-playpen</module>
+        <module>xml/jaxb-playpen</module>
         <module>yaml/snakeyaml-playpen</module>
     </modules>
 

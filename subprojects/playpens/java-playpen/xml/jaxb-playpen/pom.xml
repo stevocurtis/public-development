@@ -1,0 +1,38 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.fenixinfotech</groupId>
+        <artifactId>java-playpen-parent</artifactId>
+        <version>0.1-SNAPSHOT</version>
+        <relativePath>../..</relativePath>
+    </parent>
+    <artifactId>jaxb-playpen</artifactId>
+    <packaging>jar</packaging>
+
+    <name>JAXB Playpen</name>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>xjc</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!--<source>src/main/resources/</source>-->
+                    <packageName>com.fenixinfotech.jaxb</packageName>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
