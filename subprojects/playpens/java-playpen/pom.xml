@@ -19,8 +19,10 @@
         <module>csv/opencsv-playpen</module>
         <module>ehcache/ehcache-playpen</module>
         <module>excel/poi-playpen</module>
+        <module>fsm/statefulj-playpen</module>
         <module>ftl/ftl-playpen</module>
         <module>generics/generics-playpen</module>
+        <module>instrumentation/instrumentation-playpen</module>
         <module>ioc/dagger-playpen</module>
         <module>jmx/jmx-playpen</module>
         <module>database/database-common</module>
