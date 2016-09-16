@@ -1,10 +1,12 @@
 package com.fenixinfotech.jaxb.playpen;
 
 import com.fenixinfotech.jaxb.SampleRoot;
+import com.fenixinfotech.jaxb.Samples;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -31,7 +33,7 @@ public class JAXBUtilTest
             testOutputDirectory.mkdirs();
         }
         assertTrue(testOutputDirectory.exists());
-        testOutputFile = new File(testOutputDirectory, "test-data.xml");
+        testOutputFile = new File(testOutputDirectory, "test-data"+Math.random()+".xml");
         assertNotNull(testOutputFile);
 
         // Util instance
@@ -52,6 +54,9 @@ public class JAXBUtilTest
     public void marshall() throws Exception
     {
         SampleRoot sampleRoot = new SampleRoot();
+        sampleRoot.setId("id0");
+        sampleRoot.setSamples(new Samples());
+        sampleRoot.getSamples().getSample().add("Sample0");
         jaxbUtil.marshall(sampleRoot, testOutputFile);
     }
 

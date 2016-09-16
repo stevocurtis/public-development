@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SampleRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="file:/C:/Users/Steven/Documents/Development/GitHub/public-development/subprojects/playpens/java-playpen/xml/jaxb-playpen/src/main/xsd/Sample.xsd" id="id0">
+<SampleRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Sample.xsd" id="id0">
     <Samples>
         <Sample>Sample0</Sample>
         <Sample>Sample1</Sample>
