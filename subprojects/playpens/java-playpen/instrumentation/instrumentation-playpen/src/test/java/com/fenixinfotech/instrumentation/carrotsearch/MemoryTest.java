@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class MemoryTest
 {
     private ConcurrentHashMap<Integer, BigObjectValue> bigObject;
-    private int    numberOfBigObjectElements = 1000000;
+    private int    numberOfBigObjectElements = 100000;
 
     @Before
     public void setup() {
