@@ -1,6 +1,5 @@
 package com.fenixinfotech.jaxb.playpen;
 
-import com.fenixinfotech.jaxb.SampleRoot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
@@ -33,7 +32,7 @@ public class JAXBUtil
     private Schema getSchema() throws SAXException
     {
 
-        String schemaFileLocation = "src" + File.separator + "main" + File.separator + "xsd" + File.separator + "Sample.xsd";
+        String schemaFileLocation = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "Sample.xsd";
         File schemaFile = new File(schemaFileLocation);
         SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         Schema schema = schemaFactory.newSchema(schemaFile);

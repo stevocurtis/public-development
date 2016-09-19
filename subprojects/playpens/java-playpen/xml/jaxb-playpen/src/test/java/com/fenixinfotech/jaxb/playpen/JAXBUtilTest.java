@@ -1,12 +1,9 @@
 package com.fenixinfotech.jaxb.playpen;
 
-import com.fenixinfotech.jaxb.SampleRoot;
-import com.fenixinfotech.jaxb.Samples;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
-import java.util.Date;
 
 import static org.junit.Assert.*;
 

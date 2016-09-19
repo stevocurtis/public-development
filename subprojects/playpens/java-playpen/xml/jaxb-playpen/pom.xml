@@ -17,19 +17,18 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jaxb2-maven-plugin</artifactId>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.13.1</version>
                 <executions>
                     <execution>
-                        <id>xjc</id>
                         <goals>
-                            <goal>xjc</goal>
+                            <goal>generate</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
-                    <!--<source>src/main/resources/</source>-->
-                    <packageName>com.fenixinfotech.jaxb</packageName>
+                    <generatePackage>com.fenixinfotech.jaxb.playpen</generatePackage>
                 </configuration>
             </plugin>
         </plugins>
