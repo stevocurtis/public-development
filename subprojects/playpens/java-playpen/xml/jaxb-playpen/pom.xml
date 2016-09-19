@@ -47,12 +47,18 @@
                         <arg>-XhashCode</arg>
                         <arg>-Xcopyable</arg>
                         <arg>-Xmergeable</arg>
+                        <arg>-Xfluent-builder</arg>
                     </args>
                     <plugins>
                         <plugin>
                             <groupId>org.jvnet.jaxb2_commons</groupId>
                             <artifactId>jaxb2-basics</artifactId>
                             <version>${jaxb2-basics-version}</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>net.codesup.util</groupId>
+                            <artifactId>jaxb2-rich-contract-plugin</artifactId>
+                            <version>1.17.0</version>
                         </plugin>
                     </plugins>
                 </configuration>
