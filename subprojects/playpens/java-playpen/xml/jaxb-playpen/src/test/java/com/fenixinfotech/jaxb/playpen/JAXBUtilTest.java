@@ -1,5 +1,7 @@
 package com.fenixinfotech.jaxb.playpen;
 
+import com.fenixinfotech.jaxb.playpen.SampleRoot;
+import com.fenixinfotech.jaxb.playpen.Samples;
 import org.junit.Before;
 import org.junit.Test;
 
