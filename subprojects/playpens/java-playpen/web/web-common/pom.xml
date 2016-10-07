@@ -14,6 +14,27 @@
 
     <name>Web Common</name>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.sebastian-daschner</groupId>
+                <artifactId>jaxrs-analyzer-maven-plugin</artifactId>
+                <version>0.9</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>analyze-jaxrs</goal>
+                        </goals>
+                        <configuration>
+                            <backend>swagger</backend>
+                            <deployedDomain>localhost</deployedDomain>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
         <dependency>
             <groupId>javax.ws.rs</groupId>
