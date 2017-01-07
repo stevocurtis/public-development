@@ -42,7 +42,15 @@ public class JAXBUtilTest {
         assertNotNull(object);
         assertTrue(object instanceof SampleRoot);
         SampleRoot sampleRoot = (SampleRoot) object;
-        assertEquals(2, sampleRoot.getSamples().getSample().size());
+        assertNotNull(sampleRoot);
+
+        SampleRoot expectedSampleRoot = SampleRoot
+                .builder()
+                .withId("id0")
+                .withSamples(Samples.builder().withSample("Sample0", "Sample1").build())
+                .build();
+
+        assertEquals(expectedSampleRoot, sampleRoot);
     }
 
     @Test
