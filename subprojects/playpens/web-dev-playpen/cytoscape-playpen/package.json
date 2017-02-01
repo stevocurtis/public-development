@@ -1,0 +1,30 @@
+{
+  "name": "cytoscape-playpen",
+  "version": "1.0.0",
+  "description": "cytoscape playpen",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"not implemented\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stevocurtis/public-development.git"
+  },
+  "keywords": [
+    "network",
+    "relationship",
+    "viewer"
+  ],
+  "author": "Steve Curtis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stevocurtis/public-development/issues"
+  },
+  "homepage": "https://github.com/stevocurtis/public-development#readme",
+  "dependencies": {
+    "cytoscape": "^2.7.14",
+    "cytoscape-dagre": "^1.3.0",
+    "dagre": "^0.7.4",
+    "jquery": "^3.1.1"
+  }
+}
