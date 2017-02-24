@@ -12,6 +12,7 @@
 
     <modules>
         <module>aop/aspectj-playpen</module>
+        <module>cache/infinispan-playpen</module>
         <module>csv/csv-common</module>
         <module>csv/commons-csv</module>
         <module>csv/csveed-playpen</module>
