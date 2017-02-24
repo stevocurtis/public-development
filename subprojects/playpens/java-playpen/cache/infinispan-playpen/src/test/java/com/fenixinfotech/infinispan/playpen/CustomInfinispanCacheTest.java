@@ -2,14 +2,14 @@ package com.fenixinfotech.infinispan.playpen;
 
 import org.junit.Test;
 
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
 public class CustomInfinispanCacheTest {
 
     @Test
-    public void testCache()
-    {
-        String testCacheName = "testCache";
+    public void testCache() {
         int maxCacheEntries = 10;
 
         CustomInfinispanCache customInfinispanCache = new CustomInfinispanCache();
