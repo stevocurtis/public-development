@@ -34,4 +34,9 @@ public class CustomInfinispanCache {
         logger.debug("Retrieving from cache {} element with key {} found value {}", "default", key, value);
         return value;
     }
+
+    public void closeCache() {
+        if (cache != null)
+            cache.stop();
+    }
 }
