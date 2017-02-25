@@ -43,6 +43,13 @@ public class MonitorTask implements Runnable
             {
                 logger.warn("unable to get monitoring info from executorService since it is not an instance of ThreadPoolExecutor");
             }
+
+            // Go to sleep so don't generate too much log, Travis CI has a 4Mb limit
+            try {
+                Thread.sleep(maxDurationMillis/10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
