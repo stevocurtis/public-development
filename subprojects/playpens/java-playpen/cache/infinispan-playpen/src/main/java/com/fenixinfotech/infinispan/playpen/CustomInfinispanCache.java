@@ -2,13 +2,14 @@ package com.fenixinfotech.infinispan.playpen;
 
 import org.infinispan.Cache;
 import org.infinispan.manager.DefaultCacheManager;
+import org.infinispan.manager.EmbeddedCacheManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class CustomInfinispanCache {
     private static final Logger logger = LoggerFactory.getLogger(CustomInfinispanCache.class);
 
-    private DefaultCacheManager defaultCacheManager = null;
+    private EmbeddedCacheManager defaultCacheManager = null;
     Cache<String, String> cache = null;
 
     public CustomInfinispanCache() {
