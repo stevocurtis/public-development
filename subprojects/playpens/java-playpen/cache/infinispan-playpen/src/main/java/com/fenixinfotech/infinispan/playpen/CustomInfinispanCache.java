@@ -6,6 +6,9 @@ import org.infinispan.manager.EmbeddedCacheManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.io.IOException;
+
 public class CustomInfinispanCache {
     private static final Logger logger = LoggerFactory.getLogger(CustomInfinispanCache.class);
 
@@ -14,13 +17,22 @@ public class CustomInfinispanCache {
 
     public CustomInfinispanCache() {
         if (defaultCacheManager == null) {
-            defaultCacheManager = new DefaultCacheManager();
+            try {
+                defaultCacheManager = new DefaultCacheManager(getInfinispanConfig().toPath().toString());
+            } catch (IOException e) {
+                logger.error("issue retrieving infinispan config", e);
+            }
             cache = defaultCacheManager.getCache();
         }
     }
 
     public Cache<String, String> getCache() {
         return cache;
+    }
+
+    public File getInfinispanConfig() {
+        File infinispanConfigFile = new File(getClass().getClassLoader().getResource("infinispan.xml").getFile());
+        return infinispanConfigFile;
     }
 
     public void putInCache(String key, String value) {
