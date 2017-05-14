@@ -24,13 +24,12 @@ public class SingletonWithGenericCollectionsTest {
         singletonWithGenericCollections.addData("collection1", "collection1_value4");
         singletonWithGenericCollections.addData("collection1", "collection1_value5");
         // collection 2
-        singletonWithGenericCollections.addData("collection2", "collection1_value5");
-        singletonWithGenericCollections.addData("collection2", "collection1_value5");
+        singletonWithGenericCollections.addData("collection2", "collection2_value1");
+        singletonWithGenericCollections.addData("collection2", "collection2_value2");
 
         // check content
         assertEquals(5, singletonWithGenericCollections.getData("collection1").size());
         assertEquals(2, singletonWithGenericCollections.getData("collection2").size());
-        assertEquals(0, singletonWithGenericCollections.getData("collection3").size());
     }
 
 
