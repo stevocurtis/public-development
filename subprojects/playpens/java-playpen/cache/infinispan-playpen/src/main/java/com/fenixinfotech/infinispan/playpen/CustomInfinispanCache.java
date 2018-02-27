@@ -49,7 +49,14 @@ public class CustomInfinispanCache {
     }
 
     public void closeCache() {
-        if (cache != null)
-            cache.stop();
+        try {
+            if (cache != null)
+                cache.stop();
+        } catch (Exception e) {
+        } finally {
+
+            if (defaultCacheManager != null)
+                defaultCacheManager.stop();
+        }
     }
 }
