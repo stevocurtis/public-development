@@ -15,7 +15,7 @@ public class MyRxJavaObserver implements Observer {
     private List items = null;
 
     public List getItems() {
-        logger.debug("returning items {}", items);
+        logger.debug("returning all items {}", items);
         return items;
     }
 
@@ -26,7 +26,7 @@ public class MyRxJavaObserver implements Observer {
 
     @Override
     public void onNext(Object o) {
-        logger.debug("adding object {}", o);
+        logger.debug("adding single object {}", o);
         synchronized (this) {
             items.add(o);
         }
