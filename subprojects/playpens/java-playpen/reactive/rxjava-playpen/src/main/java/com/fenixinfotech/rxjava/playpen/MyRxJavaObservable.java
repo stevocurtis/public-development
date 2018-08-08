@@ -21,4 +21,12 @@ public class MyRxJavaObservable {
         return String.format("MyRxJavaObservable_%s", new SimpleDateFormat("YYYY-MM-DD_HH:MM:ss.SSS").format(new Date()));
     }
 
+    // TODO flesh the following out
+    public void getFLowableObservable(int max) {
+
+    }
+
+    public void getFutureCallableObservables(int max) {
+
+    }
 }
