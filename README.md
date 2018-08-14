@@ -3,4 +3,4 @@ public-development
 
 Public development repo.
 
-Test
+Used as a training aid for devs.
