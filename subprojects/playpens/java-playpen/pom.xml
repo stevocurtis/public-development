@@ -20,6 +20,7 @@
         <module>csv/opencsv-playpen</module>
         <module>database/database-common</module>
         <module>database/database-hibernate-playpen</module>
+        <module>database/database-mongo</module>
         <module>ehcache/ehcache-playpen</module>
         <module>excel/poi-playpen</module>
         <module>fsm/statefulj-playpen</module>
