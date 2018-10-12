@@ -35,4 +35,31 @@ public class MongoApp {
         logger.info("found databases {}", databases);
         return databases;
     }
+
+    public Set<String> getCollections(String databaseName) {
+        return getCollections(databaseName, null, null);
+    }
+
+    public Set<String> getCollections(String databaseName, String username, String password) {
+        Set<String> collections = new TreeSet<>();
+        if (!isStringEmpty(databaseName)) {
+            MongoDatabase mongoDatabase = mongoClient.getDatabase(databaseName);
+            if (!isStringEmpty(username) && !isStringEmpty(password)) {
+                mongoDatabase.
+            }
+            mongoDatabase.listCollectionNames()
+        }
+        Set<String> databases = new TreeSet<>();
+        mongoClient.listDatabaseNames().forEach((Consumer<? super String>) (v) -> databases.add(v));
+
+        logger.info("found databases {}", databases);
+        return databases;
+    }
+
+    private boolean isStringEmpty(String str) {
+        if (str == null || str.length() == 0) {
+            return true;
+        }
+        return false;
+    }
 }
