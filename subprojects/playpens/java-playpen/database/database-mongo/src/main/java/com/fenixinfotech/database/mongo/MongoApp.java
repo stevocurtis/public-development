@@ -35,7 +35,7 @@ public class MongoApp {
         logger.info("found databases {}", databases);
         return databases;
     }
-
+/*
     public Set<String> getCollections(String databaseName) {
         return getCollections(databaseName, null, null);
     }
@@ -55,7 +55,7 @@ public class MongoApp {
         logger.info("found databases {}", databases);
         return databases;
     }
-
+*/
     private boolean isStringEmpty(String str) {
         if (str == null || str.length() == 0) {
             return true;
