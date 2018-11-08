@@ -29,6 +29,7 @@
         <module>instrumentation/instrumentation-playpen</module>
         <module>ioc/dagger-playpen</module>
         <module>jmx/jmx-playpen</module>
+        <module>logging/logbackj-playpen</module>
         <module>reactive/rxjava-playpen</module>
         <module>spring/spring-playpen</module>
         <module>streams/streams-playpen</module>
