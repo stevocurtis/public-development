@@ -37,7 +37,7 @@ public class GreatCircleCalculations
      */
     public static double getLatitudeOffset(double distanceMetres, double latitudeDegrees) {
         double latitudeOffset = (distanceMetres / EARTH_RADIUS_IN_METRES) * (180 / PI);
-        logger.debug("found latitudeOffset {} for distanceMetres {} from latitudeDegrees {}", latitudeOffset, distanceMetres, latitudeDegrees);
+        logger.trace("found latitudeOffset {} for distanceMetres {} from latitudeDegrees {}", latitudeOffset, distanceMetres, latitudeDegrees);
         return latitudeOffset;
     }
 
@@ -63,7 +63,7 @@ public class GreatCircleCalculations
         else {
             longitudeOffset = (distanceMetres / EARTH_RADIUS_IN_METRES) * ((180 / PI) / Math.cos(Math.toRadians(absoluteLatitudeDegrees)));
         }
-        logger.debug("found longitudeOffset {} for distanceMetres {} from latitudeDegrees {}", longitudeOffset, distanceMetres, latitudeDegrees);
+        logger.trace("found longitudeOffset {} for distanceMetres {} from latitudeDegrees {}", longitudeOffset, distanceMetres, latitudeDegrees);
         return longitudeOffset;
     }
 }
