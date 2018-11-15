@@ -11,6 +11,22 @@ public class GreatCircleCalculations
     public static final int EARTH_RADIUS_IN_METRES = 6366710;
 
     /**
+     * Convenience method to wrap lat and long calcs in one call
+     *
+     * @param distanceMetres
+     * @param latitudeDegrees
+     * @return Array of offsets, first is lat and second on long
+     */
+    public static double[] getLatLongOffsets(double distanceMetres, double latitudeDegrees) {
+        double[] latLongOffsets = new double[2];
+        latLongOffsets[0] = getLatitudeOffset(distanceMetres, latitudeDegrees);
+        latLongOffsets[1] = getLongitudeOffset(distanceMetres, latitudeDegrees);
+
+        logger.info("found latLongOffsets {} for distanceMetres {} from latitudeDegrees {}", latLongOffsets, distanceMetres, latitudeDegrees);
+        return latLongOffsets;
+    }
+
+    /**
      * The number of kilometers per degree of latitude is approximately the same at all locations, approx
      *
      * (2*pi/360) * r_earth = 111 km / degree
@@ -20,7 +36,7 @@ public class GreatCircleCalculations
      * @return Longitude Offset in Degrees
      */
     public static double getLatitudeOffset(double distanceMetres, double latitudeDegrees) {
-        double latitudeOffset = Math.abs(latitudeDegrees  + (distanceMetres / EARTH_RADIUS_IN_METRES) * (180 / PI));
+        double latitudeOffset = (distanceMetres / EARTH_RADIUS_IN_METRES) * (180 / PI);
         logger.debug("found latitudeOffset {} for distanceMetres {} from latitudeDegrees {}", latitudeOffset, distanceMetres, latitudeDegrees);
         return latitudeOffset;
     }
@@ -34,12 +50,20 @@ public class GreatCircleCalculations
      *
      * @param distanceMetres
      * @param latitudeDegrees
-     * @param longitudeDegrees
      * @return Latitude Offset in Degrees
      */
-    public static double getLongitudeOffset(double distanceMetres, double latitudeDegrees, double longitudeDegrees) {
-        double longitudeOffset = Math.abs(longitudeDegrees + (distanceMetres / EARTH_RADIUS_IN_METRES) * (180 / PI) / Math.cos(Math.toRadians(latitudeDegrees)));
-        logger.debug("found longitudeOffset {} for distanceMetres {} from latitudeDegrees {} longitudeDegrees {}", longitudeOffset, distanceMetres, latitudeDegrees, longitudeDegrees);
+    public static double getLongitudeOffset(double distanceMetres, double latitudeDegrees) {
+        double absoluteLatitudeDegrees = Math.abs(latitudeDegrees);
+
+        double longitudeOffset;
+        if (absoluteLatitudeDegrees >= 90) {
+            // hit polar caps
+            longitudeOffset = 0;
+        }
+        else {
+            longitudeOffset = (distanceMetres / EARTH_RADIUS_IN_METRES) * ((180 / PI) / Math.cos(Math.toRadians(absoluteLatitudeDegrees)));
+        }
+        logger.debug("found longitudeOffset {} for distanceMetres {} from latitudeDegrees {}", longitudeOffset, distanceMetres, latitudeDegrees);
         return longitudeOffset;
     }
 }

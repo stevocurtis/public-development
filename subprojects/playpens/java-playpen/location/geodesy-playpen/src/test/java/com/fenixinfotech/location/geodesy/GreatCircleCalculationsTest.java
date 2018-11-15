@@ -16,6 +16,10 @@ public class GreatCircleCalculationsTest {
     private static final double GREENWICH_LONGITUDE = 0;
     private static final double GULF_OF_GUINEA_LATITUDE = 0;
     private static final double GULF_OF_GUINEA_LONGITUDE = 0;
+    private static final double NORTH_POLE_LATITUDE = 90;
+    private static final double NORTH_POLE_LONGITUDE = 0;
+    private static final double SOUTH_POLE_LATITUDE = -90;
+    private static final double SOUTH_POLE_LONGITUDE = 0;
     private static final double WASHINGTON_LATITUDE = 38.900688;
     private static final double WASHINGTON_LONGITUDE = -77.033640;
 
@@ -23,27 +27,27 @@ public class GreatCircleCalculationsTest {
     @Test
     public void getHorizontalLatitudeRange() {
         // BERLIN
-        GreatCircleCalculations.getLatitudeOffset(DEFAULT_DISTANCE_METRES, BERLIN_LATITUDE);
-        GreatCircleCalculations.getLongitudeOffset(DEFAULT_DISTANCE_METRES, BERLIN_LATITUDE, BERLIN_LONGITUDE);
+        GreatCircleCalculations.getLatLongOffsets(DEFAULT_DISTANCE_METRES, BERLIN_LATITUDE);
 
         // BRASILIA
-        GreatCircleCalculations.getLatitudeOffset(DEFAULT_DISTANCE_METRES, BRASILIA_LATITUDE);
-        GreatCircleCalculations.getLongitudeOffset(DEFAULT_DISTANCE_METRES, BRASILIA_LATITUDE, BRASILIA_LONGITUDE);
+        GreatCircleCalculations.getLatLongOffsets(DEFAULT_DISTANCE_METRES, BRASILIA_LATITUDE);
 
         // DUBLIN
-        GreatCircleCalculations.getLatitudeOffset(DEFAULT_DISTANCE_METRES, DUBLIN_LATITUDE);
-        GreatCircleCalculations.getLongitudeOffset(DEFAULT_DISTANCE_METRES, DUBLIN_LATITUDE, DUBLIN_LONGITUDE);
-
-        // GULF_OF_GUINEA
-        GreatCircleCalculations.getLatitudeOffset(DEFAULT_DISTANCE_METRES, GULF_OF_GUINEA_LATITUDE);
-        GreatCircleCalculations.getLongitudeOffset(DEFAULT_DISTANCE_METRES, GULF_OF_GUINEA_LATITUDE, GULF_OF_GUINEA_LONGITUDE);
+        GreatCircleCalculations.getLatLongOffsets(DEFAULT_DISTANCE_METRES, DUBLIN_LATITUDE);
 
         // GREENWICH
-        GreatCircleCalculations.getLatitudeOffset(DEFAULT_DISTANCE_METRES, GREENWICH_LATITUDE);
-        GreatCircleCalculations.getLongitudeOffset(DEFAULT_DISTANCE_METRES, GREENWICH_LATITUDE, GREENWICH_LONGITUDE);
+        GreatCircleCalculations.getLatLongOffsets(DEFAULT_DISTANCE_METRES, GREENWICH_LATITUDE);
+
+        // GULF_OF_GUINEA
+        GreatCircleCalculations.getLatLongOffsets(DEFAULT_DISTANCE_METRES, GULF_OF_GUINEA_LATITUDE);
+
+        // NORTH_POLE
+        GreatCircleCalculations.getLatLongOffsets(DEFAULT_DISTANCE_METRES, NORTH_POLE_LATITUDE);
+
+        // SOUTH_POLE
+        GreatCircleCalculations.getLatLongOffsets(DEFAULT_DISTANCE_METRES, SOUTH_POLE_LATITUDE);
 
         // WASHINGTON
-        GreatCircleCalculations.getLatitudeOffset(DEFAULT_DISTANCE_METRES, WASHINGTON_LATITUDE);
-        GreatCircleCalculations.getLongitudeOffset(DEFAULT_DISTANCE_METRES, WASHINGTON_LATITUDE, WASHINGTON_LONGITUDE);
+        GreatCircleCalculations.getLatLongOffsets(DEFAULT_DISTANCE_METRES, WASHINGTON_LATITUDE);
     }
 }
